@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme description="" title="testing sources bm" version="2.0" working_directory="/Users/srio/OASYS1.2/shadow4-tests/oasys_workspaces" workspace_units="0">
+	<nodes>
+		<node id="0" name="Bending Magnet" position="(180.0, 215.0)" project_name="OASYS1-ShadowOui" qualified_name="orangecontrib.shadow.widgets.sources.ow_bending_magnet.BendingMagnet" title="Bending Magnet" version="" />
+		<node id="1" name="Shadow Python Script" position="(431.0, 213.0)" project_name="OASYS1-ESRF-Extensions" qualified_name="orangecontrib.esrf.shadow.widgets.extension.ow_shadow_python_script.ShadowPythonScript" title="Shadow Python Script" version="" />
+	</nodes>
+	<links>
+		<link enabled="true" id="0" sink_channel="Input Beam" sink_node_id="1" source_channel="Beam" source_node_id="0" />
+	</links>
+	<annotations />
+	<thumbnail />
+	<node_properties>
+		<properties format="pickle" node_id="0">gAN9cQAoWBYAAABjYWxjdWxhdGlvbl9tb2RlX2NvbWJvcQFLAFgVAAAAZGlzdGFuY2VfZnJvbV93
+YWlzdF94cQJHAAAAAAAAAABYFQAAAGRpc3RhbmNlX2Zyb21fd2Fpc3RfenEDRwAAAAAAAAAAWAUA
+AABlX21heHEESqCGAQBYBQAAAGVfbWlucQVNiBNYCwAAAGVtaXR0YW5jZV94cQZHPpmAWayZpoVY
+CwAAAGVtaXR0YW5jZV96cQdHPjBSJOlYGKdYBgAAAGVuZXJneXEIR0AYKPXCj1wpWBEAAABmaWxl
+X3RvX3dyaXRlX291dHEJSwBYGwAAAGdlbmVyYXRlX3BvbGFyaXphdGlvbl9jb21ib3EKSwJYHwAA
+AGhvcml6b250YWxfaGFsZl9kaXZlcmdlbmNlX2Zyb21xC0c/QGJN0vGp/FgdAAAAaG9yaXpvbnRh
+bF9oYWxmX2RpdmVyZ2VuY2VfdG9xDEc/QGJN0vGp/FgQAAAAaXNfYXV0b21hdGljX3J1bnENiFgO
+AAAAbWFnbmV0aWNfZmllbGRxDkc/6ZmZmZmZmlgPAAAAbWFnbmV0aWNfcmFkaXVzcQ9HQDktXPqs
+2ehYGwAAAG1heF9udW1iZXJfb2ZfcmVqZWN0ZWRfcmF5c3EQSoCWmABYIQAAAG1heF92ZXJ0aWNh
+bF9oYWxmX2RpdmVyZ2VuY2VfZnJvbXERRz/wAAAAAAAAWB8AAABtYXhfdmVydGljYWxfaGFsZl9k
+aXZlcmdlbmNlX3RvcRJHP/AAAAAAAABYDgAAAG51bWJlcl9vZl9yYXlzcRNNUMNYEgAAAG9wdGlt
+aXplX2ZpbGVfbmFtZXEUWA4AAABOT05FIFNQRUNJRklFRHEVWA8AAABvcHRpbWl6ZV9zb3VyY2Vx
+FksAWBkAAABzYW1wbGVfZGlzdHJpYnV0aW9uX2NvbWJvcRdLAFgTAAAAc2F2ZWRXaWRnZXRHZW9t
+ZXRyeXEYY3NpcApfdW5waWNrbGVfdHlwZQpxGVgMAAAAUHlRdDUuUXRDb3JlcRpYCgAAAFFCeXRl
+QXJyYXlxG0NCAdnQywADAAAAAABIAAAAFwAABW8AAALoAAAASAAAAC0AAAVvAAAC6AAAAAACAAAA
+BaAAAABIAAAALQAABW8AAALocRyFcR2HcR5ScR9YBAAAAHNlZWRxIEoRnlYAWAcAAABzaWdtYV94
+cSFHP3/y5I6Kcd5YBwAAAHNpZ21hX3pxIkc/bX2/SH/LklgJAAAAdmlld190eXBlcSNLAHUu
+</properties>
+		<properties format="pickle" node_id="1">gAN9cQAoWBAAAABpc19hdXRvbWF0aWNfcnVucQGIWAYAAABpd3JpdGVxAksAWBMAAABzYXZlZFdp
+ZGdldEdlb21ldHJ5cQNjc2lwCl91bnBpY2tsZV90eXBlCnEEWAwAAABQeVF0NS5RdENvcmVxBVgK
+AAAAUUJ5dGVBcnJheXEGQ0IB2dDLAAMAAAAAADwAAAA+AAAFYwAAAw8AAAA8AAAAVAAABWMAAAMP
+AAAAAAAAAAAFoAAAADwAAABUAAAFYwAAAw9xB4VxCIdxCVJxClgQAAAAc2NyaXB0X2ZpbGVfZmxh
+Z3ELSwFYEAAAAHNjcmlwdF9maWxlX25hbWVxDFgPAAAAc291cmNlc19ibV8xLnB5cQ1YEAAAAHNv
+dXJjZV9maWxlX25hbWVxDlgJAAAAYmVnaW4uZGF0cQ9YCwAAAHNvdXJjZV9mbGFncRBLAHUu
+</properties>
+	</node_properties>
+</scheme>
