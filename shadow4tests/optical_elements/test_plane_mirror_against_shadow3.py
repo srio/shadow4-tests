@@ -5,23 +5,15 @@
 
 import numpy
 
-from syned.beamline.optical_elements.mirrors.mirror import Mirror as SyMirror
-
 from syned.beamline.element_coordinates import ElementCoordinates
 
-from shadow4.syned.shape import Plane, Sphere, Ellipsoid, Paraboloid, Hyperboloid # TODO from syned.beamline.shape
-
 from shadow4.beam.beam import Beam
-
-
-from Shadow.ShadowTools import plotxy
-from shadow4.compatibility.beam3 import Beam3
-
-from shadow4.syned.shape import MultiplePatch
-
+from shadow4.tools.graphics import plotxy
+from shadow4.beamline.optical_elements.mirrors.s4_plane_mirror import S4PlaneMirror, S4PlaneMirrorElement
 from shadow4.syned.shape import Rectangle, Ellipse, TwoEllipses # TODO from syned.beamline.shape
 
-from shadow4.optical_elements.s4_mirror import S4Mirror, S4MirrorElement
+
+from shadow4tests.compatibility.beam3 import Beam3
 
 from numpy.testing import assert_almost_equal
 
@@ -118,47 +110,36 @@ if __name__ == "__main__":
 
     OASYS_HOME = "/Users/srio/Oasys/"
 
-    source3, beam3, oe1 = run_shadow3()
+    source3, beam3, tmp_oe1 = run_shadow3()
 
 
     beam0 = Beam.initialize_from_array(source3.rays)
 
-    #
-    # syned definitopns
-    #
 
-    # surface shape
-    surface_shape = Plane()
+    coordinates_syned = ElementCoordinates(p = 10.0,
+                                           q = 6.0,
+                                           angle_radial = 88.8 * numpy.pi / 180,)
 
     # boundaries
     rlen1 = 5e-05
     rlen2 = 5e-05
     rwidx1 = 2e-05
     rwidx2 = 2e-05
-    boundary_shape = Rectangle(x_left=-rwidx2,x_right=rwidx1,y_bottom=-rlen2,y_top=rlen1)
 
-    symirror1 = SyMirror(
-                name="M1",
-                surface_shape=surface_shape,
-                boundary_shape=boundary_shape,
-                coating=None, #"%s/SiC.dat" % OASYS_HOME,
-                coating_thickness=None)
+    mirror1 = S4PlaneMirror(
+        name = "Plane Mirror",
+        boundary_shape = Rectangle(x_left=-rwidx2,x_right=rwidx1,y_bottom=-rlen2,y_top=rlen1),
+        f_reflec = 0,  # reflectivity of surface: 0=no reflectivity, 1=full polarization
+        f_refl = 0,  # 0=prerefl file, 1=electric susceptibility, 2=user defined file (1D reflectivity vs angle)
+                     # 3=user defined file (1D reflectivity vs energy), 4=user defined file (2D reflectivity vs energy and angle)
+        file_refl = "",  # preprocessor file fir f_refl=0,2,3,4
+        refraction_index = 1.0,  # refraction index (complex) for f_refl=1
+        )
 
-    coordinates_syned = ElementCoordinates(p = 10.0,
-                                           q = 6.0,
-                                           angle_radial = 88.8 * numpy.pi / 180,)
-
-
-    #
-    # shadow definitions
-    #
-    mirror1 = S4Mirror(name="M1",
-                surface_shape=surface_shape,
-                boundary_shape=boundary_shape)
-                # element_coordinates_syned=coordinates_syned)
     print(mirror1.info())
 
-    mirror1e = S4MirrorElement(optical_element=mirror1, coordinates=coordinates_syned)
+
+    mirror1e = S4PlaneMirrorElement(optical_element=mirror1, coordinates=coordinates_syned)
     #
     # run
     #

@@ -5,18 +5,15 @@
 
 import numpy
 
-from syned.beamline.beamline import BeamlineElement
-from syned.beamline.element_coordinates import ElementCoordinates
-from shadow4.syned.absorbers.slit import Slit as SySlit                         # TODO: syned.beamline.optical_elements.
-from shadow4.syned.absorbers.beam_stopper import BeamStopper as SyBeamStopper   # TODO: syned.beamline.optical_elements.
+from shadow4.syned.element_coordinates import ElementCoordinates                # TODO: syned.
 
 from shadow4.beam.beam import Beam
-from shadow4.optical_elements.screen import Screen
-
-from Shadow.ShadowTools import plotxy
-from shadow4.compatibility.beam3 import Beam3
-
+from shadow4.beamline.optical_elements.absorbers.s4_screen import S4Screen, S4ScreenElement
+from shadow4.tools.graphics import plotxy
 from shadow4.syned.shape import MultiplePatch
+
+from shadow4tests.compatibility.beam3 import Beam3
+from numpy.testing import assert_almost_equal
 
 def write_grid_pattern(factor=1e-2):
     #
@@ -138,9 +135,9 @@ def run_shadow3():
 if __name__ == "__main__":
 
     from srxraylib.plot.gol import set_qt
-    from numpy.testing import assert_almost_equal
-
     set_qt()
+
+
     do_plot = True
     do_assert = True
 
@@ -165,14 +162,20 @@ if __name__ == "__main__":
     beam = Beam.initialize_from_array(source3.rays)
 
 
-    sy1 = SyBeamStopper(name="Undefined",boundary_shape=patches)   # this is beamstopper
-    # sy1 = SySlit(name="Undefined", boundary_shape=patches)         # this is slit (negative)
+    scr = S4Screen(
+        name = "Undefined",
+        boundary_shape = patches,
+        i_abs = False,  # include absorption
+        i_stop = True,  # aperture/stop
+        thick = 0.0,  # thickness of the absorber (in SI)
+        file_abs = "",  # if i_abs=True, the material file (from prerefl)
+        )
 
-    coordinates_syned = ElementCoordinates(p=322.971*1e-2, q=5.0*1e-2)
+    coordinates = ElementCoordinates(p=322.971*1e-2, q=5.0*1e-2)
 
-    beamline_element_syned = BeamlineElement(optical_element=sy1, coordinates=coordinates_syned)
 
-    slit1 = Screen(beamline_element_syned=beamline_element_syned)
+    slit1 = S4ScreenElement(optical_element=scr,
+                            coordinates=coordinates)
 
     print(slit1.info())
 
@@ -181,7 +184,7 @@ if __name__ == "__main__":
     # trace
     #
 
-    beam2 = slit1.trace_beam(beam, flag_lost_value=-101)
+    beam2, tmp = slit1.trace_beam(beam, flag_lost_value=-101)
 
     #
     if do_plot:

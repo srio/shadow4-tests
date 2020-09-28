@@ -5,7 +5,7 @@
 #      ccc[6]*X   + ccc[7]*Y   + ccc[8]*Z + ccc[9] = 0
 
 
-from shadow4.optical_surfaces.conic import Conic
+from shadow4.optical_surfaces.s4_conic import S4Conic
 
 import numpy
 import unittest
@@ -19,14 +19,14 @@ class TestSurfaceConic(unittest.TestCase):
         #
         # initializers
         #
-        a = Conic()
+        a = S4Conic()
         print(a.info())
 
-        a = Conic.initialize_from_coefficients([1.0,1,1,1,1,1,1,1,1,1])
+        a = S4Conic.initialize_from_coefficients([1.0,1,1,1,1,1,1,1,1,1])
         assert_equal(a.get_coefficients(),numpy.array([1.0,1,1,1,1,1,1,1,1,1]))
         print(a.info())
 
-        a = Conic.initialize_as_plane()
+        a = S4Conic.initialize_as_plane()
         assert_equal(a.get_coefficients(),numpy.array([0,0,0,0,0,0,0,0,-1.,0]))
         print(a.info())
 

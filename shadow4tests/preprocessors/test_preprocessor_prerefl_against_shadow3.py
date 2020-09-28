@@ -13,7 +13,7 @@ if __name__ == "__main__":
     #
     # shadow3 fortran
     #
-    from shadow4.compatibility.global_definitions import SHADOW3_BINARY
+    from shadow4tests.compatibility.global_definitions import SHADOW3_BINARY
     f = open("prerefl_test.inp",'w')
     f.write("prerefl_test\nBe5_30.dat\n10000")
     f.close()

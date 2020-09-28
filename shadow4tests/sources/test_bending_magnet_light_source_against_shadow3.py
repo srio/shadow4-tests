@@ -103,57 +103,32 @@ def compare_rays_with_shadow3_beam(raysnew,beam,user_unit_to_m=1.0,do_plot=True,
         Shadow.ShadowTools.histo1(beam,11,ref=23,nolost=1)
         Shadow.ShadowTools.histo1(b,11,ref=23,nolost=1)
 
-    if do_assert:
-        print("Comparing...")
-        for i in range(6):
-            if i <= 2:
-                fact = 1.0 / user_unit_to_m
-            else:
-                fact = 1.0
-            m0 = (raysnew[:,i]*fact).mean()
-            m1 = beam.rays[:,i].mean()
-            print("\ncol %i, mean (new,old,diff/old): "%(i+1),m0,m1,numpy.abs(m0-m1)/numpy.abs(m1))
-            std0 = (raysnew[:,i]*fact).std()
-            std1 = beam.rays[:,i].std()
-            print("col %i, std (new,old,diff/old): "%(i+1),std0,std1,numpy.abs(std0-std1)/numpy.abs(std1))
 
-            if i != 5:  # TODO check why it fails!!!
+    print("Comparing...")
+    for i in range(6):
+        if i <= 2:
+            fact = 1.0 / user_unit_to_m
+        else:
+            fact = 1.0
+        m0 = (raysnew[:,i]*fact).mean()
+        m1 = beam.rays[:,i].mean()
+        print("\ncol %i, mean (new,old,diff/old): "%(i+1),m0,m1,numpy.abs(m0-m1)/numpy.abs(m1))
+        std0 = (raysnew[:,i]*fact).std()
+        std1 = beam.rays[:,i].std()
+        print("col %i, std (new,old,diff/old): "%(i+1),std0,std1,numpy.abs(std0-std1)/numpy.abs(std1))
+
+        if do_assert:
+            if True: # i != 5:  # TODO check why it fails!!!
                 assert((numpy.abs(numpy.abs(m0)   -numpy.abs(m1) )    /numpy.abs(m1)) < 15.0)
-            assert((numpy.abs(numpy.abs(std0) -numpy.abs(std1))  /numpy.abs(std1)) < 0.05)
+            assert((numpy.abs(numpy.abs(std0) -numpy.abs(std1))  /numpy.abs(std1)) < 0.075)
 
 if __name__ == "__main__":
 
+    from srxraylib.plot.gol import set_qt
+    set_qt()
+
     shadow3_beam,oe0 = run_bm_shadow3()
 
-
-
-    #
-    # oe0.BENER = 6.04
-    # oe0.EPSI_X = 3.8e-07
-    # oe0.EPSI_Z = 3.8e-09
-    # oe0.FDISTR = 4
-    # oe0.FSOURCE_DEPTH = 4
-    # oe0.F_COLOR = 3
-    # oe0.F_PHOT = 0
-    # oe0.HDIV1 = 0.0005
-    # oe0.HDIV2 = 0.0005
-    # oe0.NCOL = 0
-    # oe0.N_COLOR = 0
-    # oe0.PH1 = 5000.0
-    # oe0.PH2 = 100000.0
-    # oe0.POL_DEG = 0.0
-    # oe0.R_ALADDIN = 2517.72
-    # oe0.R_MAGNET = 25.1772
-    # oe0.SIGDIX = 0.0
-    # oe0.SIGDIZ = 0.0
-    # oe0.SIGMAX = 0.0078
-    # oe0.SIGMAY = 0.0
-    # oe0.SIGMAZ = 0.0036
-    # oe0.VDIV1 = 1.0
-    # oe0.VDIV2 = 1.0
-    # oe0.WXSOU = 0.0
-    # oe0.WYSOU = 0.0
-    # oe0.WZSOU = 0.0
 
     syned_electron_beam = ElectronBeam(energy_in_GeV=6.04,current=0.2,
                                        moment_xx=(0.0078e-2)**2,
@@ -180,11 +155,6 @@ if __name__ == "__main__":
                  flag_emittance=flag_emittance,   # when sampling rays: Use emittance (0=No, 1=Yes)
                 )
 
-    # print(bm.info())
-
-    # rays = bm.calculate_rays(syned_electron_beam, F_COHER=0,NRAYS=5000,SEED=123456,
-    #                    EPSI_DX=0.0,EPSI_DZ=0.0)
-    # compare_rays_with_shadow3_beam(rays,beam=shadow3_beam,user_unit_to_m=0.01,do_assert=True,do_plot=False)
 
     ls = S4BendingMagnetLightSource(electron_beam=syned_electron_beam,bending_magnet_magnetic_structure=bm)
 

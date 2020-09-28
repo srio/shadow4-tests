@@ -17,13 +17,15 @@ import Shadow
 import numpy
 from srxraylib.sources import srfunc
 
-
-# shadow4
 from syned.storage_ring.electron_beam import ElectronBeam
 from shadow4.sources.wiggler.s4_wiggler import S4Wiggler
 from shadow4.sources.wiggler.s4_wiggler_light_source import S4WigglerLightSource
-from shadow4.beam.beam import Beam
-from shadow4.compatibility.beam3 import Beam3
+from shadow4.tools.graphics import plotxy
+
+from shadow4tests.compatibility.beam3 import Beam3
+
+
+
 
 
 def none_conv(result):
@@ -293,12 +295,15 @@ def run_shadow3(photon_energy, n_rays=5e5, emittance=True):
 
 
 if __name__ == "__main__":
-    from Shadow.ShadowTools import plotxy
-
 
     from srxraylib.plot.gol import set_qt
     set_qt()
 
+    print("""
+##################################    
+#  THIS IS A VERY LONG TEST...   #
+##################################
+""")
     n_rays = 15000
 
     # photon_energies = numpy.linspace(100, 100000, 1665)
@@ -340,3 +345,22 @@ if __name__ == "__main__":
         f.write("%f  %f  %f %g \n" % (photon_energies[i], fwhm_v_3[i], fwhm_v_4[i], (fwhm_v_3[i] - fwhm_v_4[i])))
     f.close()
     print("File tmp.dat written to disk.") # moved to ./test_wiggler_BEATS_JR_against_shadow3.dat
+
+
+
+    #
+    # check results
+    #
+
+    from srxraylib.plot.gol import plot
+
+    a = numpy.loadtxt("test_wiggler_BEATS_JR_against_shadow3.dat")
+    print(a.shape)
+    plot(a[:, 0], 1e6 * a[:, 1],
+         a[:, 0], 1e6 * a[:, 2],
+         a[:, 0], 1e6 * a[:, 3],legend=["shadow3","shadow4","diff"],
+         xtitle="Photon energy [eV]",ytitle="FWHM [urad]")
+
+    for i in range(a.shape[0]):
+         print("Checking Energy: %f  diff: %f  urad; shadow3 * 20 percent: %f urad" % (a[i, 0],1e6 * numpy.abs(a[i, 3]), 1e6 * 0.2 * numpy.abs(a[i, 1])))
+         assert (numpy.abs(a[i, 3]) < 0.2 * numpy.abs(a[i, 1]))

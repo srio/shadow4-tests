@@ -1,10 +1,10 @@
 import numpy
 
-from shadow4.optical_surfaces.conic import Conic
+from shadow4.optical_surfaces.s4_conic import S4Conic
+from shadow4.optical_surfaces.s4_mesh import S4Mesh
+
 from srxraylib.plot.gol import plot_surface
 
-
-from mesh import Mesh
 
 
 def write_shadow_surface(s,xx,yy,filename='presurface.dat'):
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     print("fmirr = %s, p=%f, q=%f, alpha=%f, theta_grazing=%f rad, fcyl=%d"%\
               (fmirr,p,q,alpha,theta_grazing,fcyl))
 
-    ccc = Conic()
+    ccc = S4Conic()
 
     ccc.set_sphere_from_focal_distances(p,q,theta_grazing) # ,itype=fmirr,cylindrical=fcyl)
     print(ccc.info())
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     #
     # mesh object using exact surface
     #
-    mm = Mesh()
+    mm = S4Mesh()
     mm.set_ray(x0,v0)
     mm.set_surface(ccc.z_vs_xy)
 

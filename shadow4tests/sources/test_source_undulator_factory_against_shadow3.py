@@ -9,8 +9,8 @@ __date__ = "12/01/2017"
 #
 #
 #
-DO_PLOT = False  # switch on/off plots
-from shadow4.compatibility.global_definitions import SHADOW3_BINARY
+DO_PLOT = True  # switch on/off plots
+from shadow4tests.compatibility.global_definitions import SHADOW3_BINARY
 
 
 import unittest
@@ -300,17 +300,20 @@ class TestSourceUndulatorFactory(unittest.TestCase):
         # test undul_phot (undulator radiation)
         #
 
-        try:
-            import pySRU
-            is_available_pysru = True
-        except:
-            is_available_pysru = False
+        # try:
+        #     import pySRU
+        #     is_available_pysru = True
+        # except:
+        #     is_available_pysru = False
+        #
+        # try:
+        #     import srwlib
+        #     is_available_srw = True
+        # except:
+        #     is_available_srw = False
 
-        try:
-            import srwlib
-            is_available_srw = True
-        except:
-            is_available_srw = False
+        is_available_pysru = False
+        is_available_srw = False
 
         tmp = \
             """

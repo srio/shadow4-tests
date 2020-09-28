@@ -7,9 +7,6 @@ from numpy.testing import assert_equal, assert_almost_equal
 
 import Shadow
 
-#
-# minishadow
-#
 from shadow4.beam.beam import Beam
 from shadow4.optical_surfaces.s4_mesh import S4Mesh
 
@@ -343,24 +340,26 @@ def minishadow_run_mesh_mirror():
     newbeam.translation([0.0,-p*numpy.cos(theta_grazing),p*numpy.sin(theta_grazing)])
 
 
-    # #
-    # # reflect beam in the mirror surface and dump mirr.01
-    # #
+    #
+    # reflect beam in the mirror surface and dump mirr.01
+    #
 
     newbeam, normal, t, x1, v1, x2, v2 = mm.apply_specular_reflection_on_beam(newbeam)
 
     from shadow4.compatibility.beam3 import Beam3
     Beam3.initialize_from_shadow4_beam(newbeam).write('minimirr.01')
 
-    # #
-    # # put beam in lab frame and compute image
-    # #
+    #
+    # put beam in lab frame and compute image
+    #
     newbeam.rotate(theta_grazing,axis=1)
     # TODO what about alpha?
     newbeam.retrace(q,resetY=True)
     Beam3.initialize_from_shadow4_beam(newbeam).write('ministar.01')
 
 if __name__ == "__main__":
+    from srxraylib.plot.gol import set_qt
+    set_qt()
 
     create_start_files()
     create_gaussian_bump(do_plot=False)

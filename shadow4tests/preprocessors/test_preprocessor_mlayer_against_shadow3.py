@@ -6,9 +6,8 @@ from numpy.testing import assert_almost_equal
 
 import os
 
-from shadow4.compatibility.global_definitions import SHADOW3_BINARY
+from shadow4tests.compatibility.global_definitions import SHADOW3_BINARY
 
-DO_PLOTS = False
 COMPARE_WITH_SHADOW3  = True
 
 
@@ -122,7 +121,7 @@ def test_aw1():
                  legend = ["shadow3 (pre_mlayer_scan)","shadow4 (MLayer)"])
 
         print(s3[:,0].shape,s3[:,2].shape,t.shape, rs[:,0].shape)
-        assert_almost_equal(s3[:,2],rs[:,0],6)
+        assert_almost_equal(s3[:,2],rs[:,0],5)
 
 
 

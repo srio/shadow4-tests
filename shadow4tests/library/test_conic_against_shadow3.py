@@ -13,7 +13,7 @@ import Shadow
 #
 from shadow4.beam.beam import Beam
 from shadow4.compatibility.beam3 import Beam3
-from shadow4.optical_surfaces.conic import Conic
+from shadow4.optical_surfaces.s4_conic import S4Conic
 
 def run_shadow3_for_ellipsoid(iwrite=1):
     #
@@ -243,19 +243,19 @@ def minishadow_run_conic_mirror(shadow3_beam_source,shadow3_beam,oe0,oe1):
 
 
     if fmirr == 1: # sphere
-        ccc = Conic.initialize_as_sphere_from_focal_distances(p,q,theta_grazing,cylindrical=fcyl,switch_convexity=f_convex)
+        ccc = S4Conic.initialize_as_sphere_from_focal_distances(p,q,theta_grazing,cylindrical=fcyl,switch_convexity=f_convex)
     elif fmirr == 2: # Ellipsoid
-        ccc = Conic.initialize_as_ellipsoid_from_focal_distances(p,q,theta_grazing,cylindrical=fcyl,switch_convexity=f_convex)
+        ccc = S4Conic.initialize_as_ellipsoid_from_focal_distances(p,q,theta_grazing,cylindrical=fcyl,switch_convexity=f_convex)
     elif fmirr == 3: # Toroidal
         raise Exception("fmirr=3 (toroidal) is NOT A CONIC surface")
     elif fmirr == 4: # Paraboloid
-        ccc = Conic.initialize_as_paraboloid_from_focal_distances(p,q,theta_grazing,cylindrical=fcyl,switch_convexity=f_convex)
+        ccc = S4Conic.initialize_as_paraboloid_from_focal_distances(p,q,theta_grazing,cylindrical=fcyl,switch_convexity=f_convex)
     elif fmirr == 5:
-        ccc = Conic.initialize_as_plane()
+        ccc = S4Conic.initialize_as_plane()
     elif fmirr == 6: # Codling slit
         raise Exception("fmirr=6 (Codling slit) is NOT A CONIC surface")
     elif fmirr == 7: # Hyperboloid
-        ccc = Conic.initialize_as_hyperboloid_from_focal_distances(p,q,theta_grazing,cylindrical=fcyl,switch_convexity=f_convex)
+        ccc = S4Conic.initialize_as_hyperboloid_from_focal_distances(p,q,theta_grazing,cylindrical=fcyl,switch_convexity=f_convex)
     elif fmirr == 8: # Cone
         raise Exception("fmirr=8 (Cone) is NOT A CONIC surface")
     else:

@@ -40,13 +40,13 @@ __date__ = "2020"
 from setuptools import setup
 
 PACKAGES = [
-    "shadow4-tests",
-    "shadow4-tests.io",
-    "shadow4-tests.compatibility",
-    "shadow4-tests.optical_elements",
-    "shadow4-tests.sources",
-    "shadow4-tests.preprocessors",
-    "shadow4-tests.library",
+    "shadow4tests",
+    "shadow4tests.io",
+    "shadow4tests.compatibility",
+    "shadow4tests.optical_elements",
+    "shadow4tests.sources",
+    "shadow4tests.preprocessors",
+    "shadow4tests.library",
 ]
 
 INSTALL_REQUIRES = (
@@ -56,7 +56,7 @@ INSTALL_REQUIRES = (
 )
 
 
-setup(name='shadow4-tests',
+setup(name='shadow4tests',
       version='0.0.1',
       description='shadow4 tests',
       author='Manuel Sanchez del Rio',

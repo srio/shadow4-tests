@@ -260,6 +260,8 @@ def minishadow_run_toroid_mirror():
     Beam3.initialize_from_shadow4_beam(newbeam).write('ministar.01')
 
 if __name__ == "__main__":
+    from srxraylib.plot.gol import set_qt
+    set_qt()
 
     create_start_files()
     minishadow_run_toroid_mirror()
