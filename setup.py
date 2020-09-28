@@ -41,12 +41,11 @@ from setuptools import setup
 
 PACKAGES = [
     "shadow4tests",
-    "shadow4tests.io",
-    "shadow4tests.compatibility",
+    "shadow4tests.oasys_workspaces",
     "shadow4tests.optical_elements",
-    "shadow4tests.sources",
-    "shadow4tests.preprocessors",
-    "shadow4tests.library",
+    "shadow4tests.test_sources",
+    "shadow4tests.test_beamline",
+    "shadow4tests.test_sources",
 ]
 
 INSTALL_REQUIRES = (

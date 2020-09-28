@@ -7,7 +7,7 @@ from shadow4.beamline.optical_elements.ideal_elements.s4_empty import S4EmptyEle
 
 import Shadow
 from Shadow.ShadowTools import plotxy
-from shadow4.compatibility.beam3 import Beam3
+from shadow4tests.compatibility.beam3 import Beam3
 
 from numpy.testing import assert_almost_equal
 

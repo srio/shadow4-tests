@@ -346,7 +346,7 @@ def minishadow_run_mesh_mirror():
 
     newbeam, normal, t, x1, v1, x2, v2 = mm.apply_specular_reflection_on_beam(newbeam)
 
-    from shadow4.compatibility.beam3 import Beam3
+    from shadow4tests.compatibility.beam3 import Beam3
     Beam3.initialize_from_shadow4_beam(newbeam).write('minimirr.01')
 
     #

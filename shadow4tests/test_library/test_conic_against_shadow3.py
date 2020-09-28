@@ -12,7 +12,7 @@ import Shadow
 # minishadow
 #
 from shadow4.beam.beam import Beam
-from shadow4.compatibility.beam3 import Beam3
+from shadow4tests.compatibility.beam3 import Beam3
 from shadow4.optical_surfaces.s4_conic import S4Conic
 
 def run_shadow3_for_ellipsoid(iwrite=1):

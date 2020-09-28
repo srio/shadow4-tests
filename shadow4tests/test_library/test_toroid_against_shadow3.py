@@ -6,7 +6,7 @@ import platform
 from numpy.testing import assert_equal, assert_almost_equal
 
 import Shadow
-from shadow4.compatibility.beam3 import Beam3
+from shadow4tests.compatibility.beam3 import Beam3
 
 #
 # shadow4
