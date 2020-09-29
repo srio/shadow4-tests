@@ -34,6 +34,7 @@
 		<node id="30" name="PreRefl" position="(530.0, 883.0)" project_name="OASYS1-ShadowOui" qualified_name="orangecontrib.shadow.widgets.preprocessor.xsh_prerefl.OWxsh_prerefl" title="PreRefl" version="" />
 		<node id="31" name="Shadow Python Script" position="(701.0, 366.0)" project_name="OASYS1-ESRF-Extensions" qualified_name="orangecontrib.esrf.shadow.widgets.extension.ow_shadow_python_script.ShadowPythonScript" title="Shadow Python Script" version="" />
 		<node id="32" name="Info" position="(788.0, 1834.0)" project_name="OASYS1-ShadowOui" qualified_name="orangecontrib.shadow.widgets.plots.ow_info.Info" title="Info" version="" />
+		<node id="33" name="Shadow Python Script" position="(700.0, 483.0)" project_name="OASYS1-ESRF-Extensions" qualified_name="orangecontrib.esrf.shadow.widgets.extension.ow_shadow_python_script.ShadowPythonScript" title="Shadow Python Script" version="" />
 	</nodes>
 	<links>
 		<link enabled="true" id="0" sink_channel="Input Beam" sink_node_id="1" source_channel="Beam" source_node_id="0" />
@@ -64,11 +65,12 @@
 		<link enabled="true" id="25" sink_channel="Input Beam" sink_node_id="23" source_channel="Beam" source_node_id="28" />
 		<link enabled="true" id="26" sink_channel="Input Beam" sink_node_id="31" source_channel="Beam" source_node_id="2" />
 		<link enabled="true" id="27" sink_channel="Input Beam" sink_node_id="32" source_channel="Beam" source_node_id="21" />
+		<link enabled="true" id="28" sink_channel="Input Beam" sink_node_id="33" source_channel="Beam" source_node_id="3" />
 	</links>
 	<annotations>
 		<text font-family="Helvetica" font-size="16" id="0" rect="(80.0, 465.0, 150.0, 36.0)">Branch 2 (toroid)</text>
 		<text font-family="Helvetica" font-size="16" id="1" rect="(78.0, 536.0, 150.0, 36.0)">Branch 3 (mesh)</text>
-		<text font-family="Helvetica" font-size="16" id="2" rect="(83.0, 293.0, 209.0, 59.0)">Branch 1 (2 elements)</text>
+		<text font-family="Helvetica" font-size="16" id="2" rect="(83.0, 293.0, 209.0, 59.0)">Branch 1 (twomirrors)</text>
 		<text font-family="Helvetica" font-size="16" id="3" rect="(83.0, 893.0, 150.0, 31.0)">Branch 4 (preRefl)</text>
 		<text font-family="Helvetica" font-size="16" id="4" rect="(132.0, 1412.0, 150.0, 44.0)">Branch 5 (different conic mirrors)</text>
 	</annotations>
@@ -212,7 +214,7 @@ aXZpdHlfdHlwZXHCSwBYIAAAAHJlZnJhY3RpdmVfaW5kZXhfaW5faW1hZ2VfbWVkaXVtccNHAAAA
 AAAAAABYIQAAAHJlZnJhY3RpdmVfaW5kZXhfaW5fb2JqZWN0X21lZGl1bXHERwAAAAAAAAAAWBMA
 AABzYXZlZFdpZGdldEdlb21ldHJ5ccVjc2lwCl91bnBpY2tsZV90eXBlCnHGWAwAAABQeVF0NS5R
 dENvcmVxx1gKAAAAUUJ5dGVBcnJheXHIQ0IB2dDLAAMAAAAAADwAAAA/AAAFYwAAAxAAAAA8AAAA
-VQAABWMAAAMQAAAAAAAAAAAFoAAAADwAAABVAAAFYwAAAxBxyYVxyodxy1JxzFgPAAAAc2VlZF9m
+VQAABWMAAAMQAAAAAAIAAAAFoAAAADwAAABVAAAFYwAAAxBxyYVxyodxy1JxzFgPAAAAc2VlZF9m
 b3JfbW9zYWljcc1Ki8buYFgRAAAAc2xpdF9jZW50ZXJfeGF4aXNxzkcAAAAAAAAAAFgRAAAAc2xp
 dF9jZW50ZXJfemF4aXNxz0cAAAAAAAAAAFgRAAAAc2xpdF9oZWlnaHRfemF4aXNx0EcAAAAAAAAA
 AFgQAAAAc2xpdF93aWR0aF94YXhpc3HRRwAAAAAAAAAAWBUAAABzbV9hbmdsZV9vZl9pbmNpZGVu
@@ -334,8 +336,8 @@ cmVmbGVjdGlvbl9hbmdsZV9tcmFkcb5oDWgRQwgAAAAAAAAIQHG/hnHAUnHBWBEAAAByZWZsZWN0
 aXZpdHlfdHlwZXHCSwBYIAAAAHJlZnJhY3RpdmVfaW5kZXhfaW5faW1hZ2VfbWVkaXVtccNHAAAA
 AAAAAABYIQAAAHJlZnJhY3RpdmVfaW5kZXhfaW5fb2JqZWN0X21lZGl1bXHERwAAAAAAAAAAWBMA
 AABzYXZlZFdpZGdldEdlb21ldHJ5ccVjc2lwCl91bnBpY2tsZV90eXBlCnHGWAwAAABQeVF0NS5R
-dENvcmVxx1gKAAAAUUJ5dGVBcnJheXHIQ0IB2dDLAAMAAAAAAHgAAAB+AAAFnwAAA08AAAB4AAAA
-lgAABZ8AAANRAAAAAAIAAAAFoAAAAHgAAACUAAAFnwAAA09xyYVxyodxy1JxzFgPAAAAc2VlZF9m
+dENvcmVxx1gKAAAAUUJ5dGVBcnJheXHIQ0IB2dDLAAMAAAAAADwAAAA9AAAFYwAAAw4AAAA8AAAA
+UwAABWMAAAMOAAAAAAAAAAAFoAAAADwAAABTAAAFYwAAAw5xyYVxyodxy1JxzFgPAAAAc2VlZF9m
 b3JfbW9zYWljcc1Ki8buYFgRAAAAc2xpdF9jZW50ZXJfeGF4aXNxzkcAAAAAAAAAAFgRAAAAc2xp
 dF9jZW50ZXJfemF4aXNxz0cAAAAAAAAAAFgRAAAAc2xpdF9oZWlnaHRfemF4aXNx0EcAAAAAAAAA
 AFgQAAAAc2xpdF93aWR0aF94YXhpc3HRRwAAAAAAAAAAWBUAAABzbV9hbmdsZV9vZl9pbmNpZGVu
@@ -457,8 +459,8 @@ cmVmbGVjdGlvbl9hbmdsZV9tcmFkcb5of1gRAAAAcmVmbGVjdGl2aXR5X3R5cGVxv0sAWCAAAABy
 ZWZyYWN0aXZlX2luZGV4X2luX2ltYWdlX21lZGl1bXHARwAAAAAAAAAAWCEAAAByZWZyYWN0aXZl
 X2luZGV4X2luX29iamVjdF9tZWRpdW1xwUcAAAAAAAAAAFgTAAAAc2F2ZWRXaWRnZXRHZW9tZXRy
 eXHCY3NpcApfdW5waWNrbGVfdHlwZQpxw1gMAAAAUHlRdDUuUXRDb3JlccRYCgAAAFFCeXRlQXJy
-YXlxxUNCAdnQywADAAAAAAahAAAAywAAC8gAAAOkAAAGoQAAAOkAAAvIAAADpAAAAAEAAAAABpAA
-AAahAAAA6QAAC8gAAAOkccaFcceHcchScclYDwAAAHNlZWRfZm9yX21vc2FpY3HKSovG7mBYEQAA
+YXlxxUNCAdnQywADAAAAAAB4AAAAfAAABZ8AAANNAAAAeAAAAJIAAAWfAAADTQAAAAACAAAABaAA
+AAB4AAAAkgAABZ8AAANNccaFcceHcchScclYDwAAAHNlZWRfZm9yX21vc2FpY3HKSovG7mBYEQAA
 AHNsaXRfY2VudGVyX3hheGlzcctHAAAAAAAAAABYEQAAAHNsaXRfY2VudGVyX3pheGlzccxHAAAA
 AAAAAABYEQAAAHNsaXRfaGVpZ2h0X3pheGlzcc1HAAAAAAAAAABYEAAAAHNsaXRfd2lkdGhfeGF4
 aXNxzkcAAAAAAAAAAFgVAAAAc21fYW5nbGVfb2ZfaW5jaWRlbmNlcc9HAAAAAAAAAABYFwAAAHNt
@@ -2336,14 +2338,22 @@ COsAAADGAAALEAAAAutxDYVxDodxD1JxEHUu
 		<properties format="pickle" node_id="31">gAN9cQAoWAYAAABkb19ydW5xAUsBWBAAAABpc19hdXRvbWF0aWNfcnVucQKIWAYAAABpd3JpdGVx
 A0sAWBMAAABzYXZlZFdpZGdldEdlb21ldHJ5cQRjc2lwCl91bnBpY2tsZV90eXBlCnEFWAwAAABQ
 eVF0NS5RdENvcmVxBlgKAAAAUUJ5dGVBcnJheXEHQ0IB2dDLAAMAAAAAADwAAAA/AAAFYwAAAxAA
-AAA8AAAAVQAABWMAAAMQAAAAAAAAAAAFoAAAADwAAABVAAAFYwAAAxBxCIVxCYdxClJxC1gQAAAA
-c2NyaXB0X2ZpbGVfZmxhZ3EMSwFYEAAAAHNjcmlwdF9maWxlX25hbWVxDVgSAAAAbWlycm9yc19i
-cmFuY2gxLnB5cQ5YEAAAAHNvdXJjZV9maWxlX25hbWVxD1gJAAAAYmVnaW4uZGF0cRBYCwAAAHNv
-dXJjZV9mbGFncRFLAHUu
+AAA8AAAAVQAABWMAAAMQAAAAAAIAAAAFoAAAADwAAABVAAAFYwAAAxBxCIVxCYdxClJxC1gQAAAA
+c2NyaXB0X2ZpbGVfZmxhZ3EMSwFYEAAAAHNjcmlwdF9maWxlX25hbWVxDVgdAAAAbWlycm9yc19i
+cmFuY2gxX3R3b21pcnJvcnMucHlxDlgQAAAAc291cmNlX2ZpbGVfbmFtZXEPWAkAAABiZWdpbi5k
+YXRxEFgLAAAAc291cmNlX2ZsYWdxEUsAdS4=
 </properties>
 		<properties format="pickle" node_id="32">gAN9cQBYEwAAAHNhdmVkV2lkZ2V0R2VvbWV0cnlxAWNzaXAKX3VucGlja2xlX3R5cGUKcQJYDAAA
 AFB5UXQ1LlF0Q29yZXEDWAoAAABRQnl0ZUFycmF5cQRDQgHZ0MsAAwAAAAABuAAAACQAAAVtAAAC
 wwAAAbgAAAA6AAAFbQAAAsMAAAAAAAAAAAWgAAABuAAAADoAAAVtAAACw3EFhXEGh3EHUnEIcy4=
+</properties>
+		<properties format="pickle" node_id="33">gAN9cQAoWAYAAABkb19ydW5xAUsBWBAAAABpc19hdXRvbWF0aWNfcnVucQKIWAYAAABpd3JpdGVx
+A0sAWBMAAABzYXZlZFdpZGdldEdlb21ldHJ5cQRjc2lwCl91bnBpY2tsZV90eXBlCnEFWAwAAABQ
+eVF0NS5RdENvcmVxBlgKAAAAUUJ5dGVBcnJheXEHQ0IB2dDLAAMAAAAAADwAAAA/AAAFYwAAAxAA
+AAA8AAAAVQAABWMAAAMQAAAAAAIAAAAFoAAAADwAAABVAAAFYwAAAxBxCIVxCYdxClJxC1gQAAAA
+c2NyaXB0X2ZpbGVfZmxhZ3EMSwFYEAAAAHNjcmlwdF9maWxlX25hbWVxDVgZAAAAbWlycm9yc19i
+cmFuY2gyX3Rvcm9pZC5weXEOWBAAAABzb3VyY2VfZmlsZV9uYW1lcQ9YCQAAAGJlZ2luLmRhdHEQ
+WAsAAABzb3VyY2VfZmxhZ3ERSwB1Lg==
 </properties>
 	</node_properties>
 </scheme>

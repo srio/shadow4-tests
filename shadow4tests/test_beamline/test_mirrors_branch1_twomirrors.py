@@ -29,7 +29,7 @@ if __name__ == "__main__":
     #
     # shadow3
     #
-    from shadow4tests.oasys_workspaces.mirrors_branch1 import define_source, run_source, define_beamline, run_beamline
+    from shadow4tests.oasys_workspaces.mirrors_branch1_twomirrors import define_source, run_source, define_beamline, run_beamline
 
     oe0 = define_source()
     beam3_source = run_source(oe0)
@@ -100,8 +100,8 @@ if __name__ == "__main__":
     plotxy(beam3, 1, 3, nbins=201, nolost=1, title="two plane mirrors shadow3")
     plotxy(beam4, 1, 3, nbins=201, nolost=1, title="two plane mirrors shadow4")
 
-    from shadow4tests.compatibility.compare_beams import compare_six_columns, check_almost_equal
+    from shadow4tests.compatibility.compare_beams import check_six_columns_mean_and_std, check_almost_equal
 
-    compare_six_columns(beam3, beam4, do_assert=True, do_plot=False)
+    check_six_columns_mean_and_std(beam3, beam4, do_assert=True, do_plot=False)
     check_almost_equal(beam3, beam4, do_assert = True, level=6)
 

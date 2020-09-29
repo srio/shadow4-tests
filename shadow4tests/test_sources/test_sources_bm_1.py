@@ -79,6 +79,7 @@ if __name__ == "__main__":
     plotxy(beam3, 1, 3, nbins=201, title="BM shadow3")
     plotxy(beam4, 1, 3, nbins=201, title="BM shadow4")
 
-    from shadow4tests.compatibility.compare_beams import compare_six_columns
-    compare_six_columns(beam3, beam4, do_plot = True, do_assert = True, assert_value = 1e-2, to_meters=to_meters)
+    from shadow4tests.compatibility.compare_beams import check_six_columns_mean_and_std
+
+    check_six_columns_mean_and_std(beam3, beam4, do_plot = True, do_assert = True, assert_value = 1e-2, to_meters=to_meters)
 
