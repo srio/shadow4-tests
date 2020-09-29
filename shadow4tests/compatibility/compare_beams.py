@@ -4,18 +4,13 @@ Tools to compare beams from shadow3 and Shadow4
 import numpy
 from srxraylib.plot.gol import plot_scatter
 import Shadow
-from shadow4.beam.beam import Beam
-
-def compare_shadow3_and_shadow4_beams(beam3,beam4,do_plot=True,do_assert=False,assert_value=1e-2):
-
-    return compare_shadow3_and_shadow4_rays(beam3.rays,beam4.rays,do_plot=do_plot,do_assert=do_assert,
-                                            assert_value=assert_value)
+from numpy.testing import assert_almost_equal
 
 
-def compare_shadow3_and_shadow4_rays(rays3,rays4,do_plot=True,do_assert=False,assert_value=1e-2):
+def compare_six_columns(beam3,beam4,do_plot=True,do_assert=False,assert_value=1e-2,to_meters=1.0):
 
-    raysnew = rays4
-    rays = rays3
+    raysnew = beam4.rays
+    rays = beam3.rays
 
     if do_plot:
         # plot_scatter(rays[:,1],rays[:,0],title="Trajectory shadow3",show=False)
@@ -41,17 +36,26 @@ def compare_shadow3_and_shadow4_rays(rays3,rays4,do_plot=True,do_assert=False,as
 
     print("Comparing...")
     for i in range(6):
-        if i <= 2:
-            fact = 1e-3 # shadow3 units to m
-        else:
-            fact = 1.0
+
         m0 = (raysnew[:,i]).mean()
-        m1 = (rays[:,i]*fact).mean()
+        m1 = (rays[:,i]*to_meters).mean()
         print("\ncol %d, mean sh3, sh4, |sh4-sh3|: %10g  %10g  %10g"%(i+1,m1,m0,numpy.abs(m0-m1)))
         std0 = raysnew[:,i].std()
-        std1 = (rays[:,i]*fact).std()
+        std1 = (rays[:,i]*to_meters).std()
         print("col %d, stdv sh3, sh4, |sh4-sh3|: %10g  %10g  %10g"%(i+1,std1,std0,numpy.abs(std0-std1)))
 
         if do_assert:
             assert(numpy.abs(m0-m1) < assert_value)
             assert(numpy.abs(std0-std1) < assert_value)
+
+def check_almost_equal(beam3, beam4, do_assert=True, display_ray_number=10, level=1):
+
+    print("\ncol#   shadow4  shadow3")
+    for i in range(18):
+
+        print("col%d   %20.10f  %20.10f  " % (i + 1, beam3.rays[display_ray_number, i], beam4.rays[display_ray_number, i]))
+        if do_assert:
+            if i in [13,14]: # angles
+                assert_almost_equal( numpy.mod(beam3.rays[:, i], numpy.pi), numpy.mod(beam4.rays[:, i], numpy.pi), level)
+            else:
+                assert_almost_equal (beam3.rays[:,i], beam4.rays[:,i], level)

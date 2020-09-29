@@ -1,32 +1,33 @@
-from srxraylib.plot.gol import set_qt
-set_qt()
-
-from shadow4tests.oasys_workspaces.sources_bm_1 import run_source
-
-
-from syned.storage_ring.electron_beam import ElectronBeam
-from shadow4.sources.bending_magnet.s4_bending_magnet import S4BendingMagnet
-from shadow4.sources.bending_magnet.s4_bending_magnet_light_source import S4BendingMagnetLightSource
-
-from shadow4.tools.graphics import plotxy
-
-from shadow4tests.compatibility.compare_shadow3_and_shadow4_beams import compare_shadow3_and_shadow4_beams
-
-
 def check_congruence(oe0):
     assert(oe0.F_WIGGLER == 0)
     assert( (oe0.FDISTR == 4) or (oe0.FDISTR == 6))
 
 
-
 if __name__ == "__main__":
+    from srxraylib.plot.gol import set_qt
+
+    set_qt()
+
+    from syned.storage_ring.electron_beam import ElectronBeam
+    from shadow4.sources.bending_magnet.s4_bending_magnet import S4BendingMagnet
+    from shadow4.sources.bending_magnet.s4_bending_magnet_light_source import S4BendingMagnetLightSource
+
+    from shadow4.tools.graphics import plotxy
+
+
+    #
+    #
+    #
+
     to_meters = 1.0
 
     #
     # shadow3
     #
+    from shadow4tests.oasys_workspaces.sources_bm_1 import define_source, run_source
 
-    beam3, oe0 = run_source()
+    oe0 = define_source()
+    beam3 = run_source(oe0)
 
 
 
@@ -78,5 +79,6 @@ if __name__ == "__main__":
     plotxy(beam3, 1, 3, nbins=201, title="BM shadow3")
     plotxy(beam4, 1, 3, nbins=201, title="BM shadow4")
 
-    compare_shadow3_and_shadow4_beams(beam3, beam4, do_plot = True, do_assert = False, assert_value = 1e-2)
+    from shadow4tests.compatibility.compare_beams import compare_six_columns
+    compare_six_columns(beam3, beam4, do_plot = True, do_assert = True, assert_value = 1e-2, to_meters=to_meters)
 

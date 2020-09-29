@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<scheme description="" title="testing sources bm" version="2.0" working_directory="/Users/srio/OASYS1.2/shadow4-tests/oasys_workspaces" workspace_units="0">
+<scheme description="" title="testing sources bm" version="2.0" working_directory="/Users/srio/OASYS1.2/shadow4-tests/shadow4tests/oasys_workspaces" workspace_units="0">
 	<nodes>
 		<node id="0" name="Bending Magnet" position="(180.0, 215.0)" project_name="OASYS1-ShadowOui" qualified_name="orangecontrib.shadow.widgets.sources.ow_bending_magnet.BendingMagnet" title="Bending Magnet" version="" />
 		<node id="1" name="Shadow Python Script" position="(431.0, 213.0)" project_name="OASYS1-ESRF-Extensions" qualified_name="orangecontrib.esrf.shadow.widgets.extension.ow_shadow_python_script.ShadowPythonScript" title="Shadow Python Script" version="" />
@@ -28,12 +28,13 @@ QXJyYXlxG0NCAdnQywADAAAAAABIAAAAFwAABW8AAALoAAAASAAAAC0AAAVvAAAC6AAAAAACAAAA
 BaAAAABIAAAALQAABW8AAALocRyFcR2HcR5ScR9YBAAAAHNlZWRxIEoRnlYAWAcAAABzaWdtYV94
 cSFHP3/y5I6Kcd5YBwAAAHNpZ21hX3pxIkc/bX2/SH/LklgJAAAAdmlld190eXBlcSNLAHUu
 </properties>
-		<properties format="pickle" node_id="1">gAN9cQAoWBAAAABpc19hdXRvbWF0aWNfcnVucQGIWAYAAABpd3JpdGVxAksAWBMAAABzYXZlZFdp
-ZGdldEdlb21ldHJ5cQNjc2lwCl91bnBpY2tsZV90eXBlCnEEWAwAAABQeVF0NS5RdENvcmVxBVgK
-AAAAUUJ5dGVBcnJheXEGQ0IB2dDLAAMAAAAAADwAAAA+AAAFYwAAAw8AAAA8AAAAVAAABWMAAAMP
-AAAAAAAAAAAFoAAAADwAAABUAAAFYwAAAw9xB4VxCIdxCVJxClgQAAAAc2NyaXB0X2ZpbGVfZmxh
-Z3ELSwFYEAAAAHNjcmlwdF9maWxlX25hbWVxDFgPAAAAc291cmNlc19ibV8xLnB5cQ1YEAAAAHNv
-dXJjZV9maWxlX25hbWVxDlgJAAAAYmVnaW4uZGF0cQ9YCwAAAHNvdXJjZV9mbGFncRBLAHUu
+		<properties format="pickle" node_id="1">gAN9cQAoWAYAAABkb19ydW5xAUsBWBAAAABpc19hdXRvbWF0aWNfcnVucQKIWAYAAABpd3JpdGVx
+A0sAWBMAAABzYXZlZFdpZGdldEdlb21ldHJ5cQRjc2lwCl91bnBpY2tsZV90eXBlCnEFWAwAAABQ
+eVF0NS5RdENvcmVxBlgKAAAAUUJ5dGVBcnJheXEHQ0IB2dDLAAMAAAAAADwAAAA/AAAFYwAAAxAA
+AAA8AAAAVQAABWMAAAMQAAAAAAIAAAAFoAAAADwAAABVAAAFYwAAAxBxCIVxCYdxClJxC1gQAAAA
+c2NyaXB0X2ZpbGVfZmxhZ3EMSwFYEAAAAHNjcmlwdF9maWxlX25hbWVxDVgPAAAAc291cmNlc19i
+bV8xLnB5cQ5YEAAAAHNvdXJjZV9maWxlX25hbWVxD1gJAAAAYmVnaW4uZGF0cRBYCwAAAHNvdXJj
+ZV9mbGFncRFLAHUu
 </properties>
 	</node_properties>
 </scheme>

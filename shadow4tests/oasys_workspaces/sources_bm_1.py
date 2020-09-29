@@ -4,14 +4,12 @@
 import Shadow
 import numpy
 
-def run_source(iwrite=0):
-    # write (1) or not (0) SHADOW files start.xx end.xx star.xx
 
+def define_source():
     #
     # initialize shadow3 source (oe0) and beam
     #
     oe0 = Shadow.Source()
-    beam = Shadow.Beam()
 
     # Define variables. See https://raw.githubusercontent.com/oasys-kit/shadow3/master/docs/source.nml
 
@@ -44,40 +42,33 @@ def run_source(iwrite=0):
     oe0.WYSOU = 0.0
     oe0.WZSOU = 0.0
 
-
+    return oe0
+    
+def run_source(oe0, iwrite=False):
+    # iwrite (1) or not (0) SHADOW files start.xx end.xx star.xx
 
     #Run SHADOW to create the source
 
     if iwrite:
         oe0.write("start.00")
 
+    beam = Shadow.Beam()
     beam.genSource(oe0)
 
     if iwrite:
         oe0.write("end.00")
         beam.write("begin.dat")
 
-    return beam, oe0
-    
+    return beam
 
-def run_trace(beam, iwrite=0):
-    # initialize elements
-    oe_list = []
-
-    
-
-    # Define variables. See https://raw.githubusercontent.com/oasys-kit/shadow3/master/docs/oe.nml
-
-
-
-
-    return beam, oe_list
-
-    
-
-# beam, oe0 = run_source(iwrite=0)
-# beam, oe_list = run_trace(beam,iwrite=0)
 #
+# main
+#
+
+oe0 = define_source()
+
+beam = run_source(oe0, iwrite=0)
+    
 # Shadow.ShadowTools.plotxy(beam,1,3,nbins=101,nolost=1,title="Real space")
 # Shadow.ShadowTools.plotxy(beam,1,4,nbins=101,nolost=1,title="Phase space X")
 # Shadow.ShadowTools.plotxy(beam,3,6,nbins=101,nolost=1,title="Phase space Z")
