@@ -42,7 +42,6 @@ from setuptools import setup
 PACKAGES = [
     "shadow4tests",
     "shadow4tests.oasys_workspaces",
-    "shadow4tests.optical_elements",
     "shadow4tests.test_sources",
     "shadow4tests.test_beamline",
     "shadow4tests.test_sources",

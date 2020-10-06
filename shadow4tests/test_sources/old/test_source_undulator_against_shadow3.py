@@ -14,9 +14,8 @@ import numpy
 from numpy.testing import assert_almost_equal
 from shadow4.sources.undulator.s4_undulator import S4Undulator
 from shadow4.sources.undulator.s4_undulator_light_source import S4UndulatorLightSource
-from shadow4.compatibility.beam3 import Beam3
-from shadow4tests.sources.test_source_undulator_factory_against_shadow3 import \
-    _calculate_shadow3_beam_using_preprocessors, _shadow3_commands
+from shadow4tests.compatibility.beam3 import Beam3
+from shadow4tests.test_sources.old.test_source_undulator_factory_against_shadow3 import _calculate_shadow3_beam_using_preprocessors, _shadow3_commands
 
 
 

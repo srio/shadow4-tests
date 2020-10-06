@@ -63,7 +63,7 @@ def define_beamline():
 
     oe1.DUMMY = 100.0
     oe1.FHIT_C = 1
-    oe1.FILE_RIP = b'/Users/srio/OASYS1.2/shadow4-tests/shadow4tests/oasys_workspaces/mirrors_branch3_mesh_shadow.dat'
+    oe1.FILE_RIP = b'/users/srio/OASYS1.2/shadow4tests/shadow4tests/oasys_workspaces/mirrors_branch3_mesh_shadow.dat'
     oe1.FWRITE = 1
     oe1.F_G_S = 2
     oe1.F_RIPPLE = 1
@@ -71,10 +71,9 @@ def define_beamline():
     oe1.RLEN2 = 0.6
     oe1.RWIDX1 = 0.05
     oe1.RWIDX2 = 0.05
-    oe1.T_IMAGE = 1000.0
+    oe1.T_IMAGE = 100.0
     oe1.T_INCIDENCE = 88.8
     oe1.T_REFLECTION = 88.8
-    oe1.T_SOURCE = 100.0
 
 
 

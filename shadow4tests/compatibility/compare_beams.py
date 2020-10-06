@@ -7,10 +7,16 @@ import Shadow
 from numpy.testing import assert_almost_equal
 
 
-def check_six_columns_mean_and_std(beam3, beam4, do_plot=True, do_assert=False, assert_value=1e-2, to_meters=1.0):
+def check_six_columns_mean_and_std(beam3, beam4, do_plot=True, do_assert=False, assert_value=1e-2, to_meters=1.0, good_only=True):
 
     raysnew = beam4.rays
     rays = beam3.rays
+
+    if good_only:
+        indices = numpy.where(rays[:,9] > 0 )[0]
+        print(indices)
+        rays = rays[indices, :].copy()
+        raysnew = raysnew[indices, :].copy()
 
     if do_plot:
         # plot_scatter(rays[:,1],rays[:,0],title="Trajectory shadow3",show=False)
