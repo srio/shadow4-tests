@@ -56,7 +56,7 @@ def check_six_columns_mean_and_std(beam3, beam4, do_plot=True, do_assert=False, 
 
 def check_almost_equal(beam3, beam4, do_assert=True, display_ray_number=10, level=1):
 
-    print("\ncol#   shadow4  shadow3")
+    print("\ncol#   shadow3  shadow4")
     for i in range(18):
 
         print("col%d   %20.10f  %20.10f  " % (i + 1, beam3.rays[display_ray_number, i], beam4.rays[display_ray_number, i]))
