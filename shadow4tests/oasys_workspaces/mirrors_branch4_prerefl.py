@@ -66,7 +66,7 @@ def define_beamline():
 
     oe1.DUMMY = 100.0
     oe1.FHIT_C = 1
-    oe1.FILE_REFL = b'/users/srio/OASYS1.2/shadow4tests/shadow4tests/oasys_workspaces/SiC.dat'
+    oe1.FILE_REFL = b'./../oasys_workspaces/SiC.dat'
     oe1.FWRITE = 1
     oe1.F_REFLEC = 1
     oe1.RLEN1 = 5e-05

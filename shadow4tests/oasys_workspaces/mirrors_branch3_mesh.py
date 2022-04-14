@@ -63,7 +63,7 @@ def define_beamline():
 
     oe1.DUMMY = 100.0
     oe1.FHIT_C = 1
-    oe1.FILE_RIP = b'/users/srio/OASYS1.2/shadow4tests/shadow4tests/oasys_workspaces/mirrors_branch3_mesh_shadow.dat'
+    oe1.FILE_RIP = b'./../oasys_workspaces/mirrors_branch3_mesh_shadow.dat'
     oe1.FWRITE = 1
     oe1.F_G_S = 2
     oe1.F_RIPPLE = 1
