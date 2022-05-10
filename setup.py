@@ -50,7 +50,7 @@ PACKAGES = [
 INSTALL_REQUIRES = (
     'setuptools',
     'shadow4',
-    'Shadow',
+    'shadow3',
 )
 
 
