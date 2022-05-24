@@ -77,9 +77,9 @@ def run_ellipsoid(kind="paraboloid"):
         cylinder_direction = Direction.SAGITTAL
 
     if oe.F_CONVEX == 0:
-        convexity = Convexity.UPWARD
-    elif oe.F_CONVEX == 1:
         convexity = Convexity.DOWNWARD
+    elif oe.F_CONVEX == 1:
+        convexity = Convexity.UPWARD
 
     # f_side = 0 - for fmirr=4: focus location at image (0) or source (1).
 

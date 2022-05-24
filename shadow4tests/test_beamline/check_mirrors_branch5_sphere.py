@@ -79,9 +79,9 @@ def run_sphere(kind="sphere"):
         cylinder_direction = Direction.SAGITTAL
 
     if oe.F_CONVEX == 0:
-        convexity = Convexity.UPWARD
-    elif oe.F_CONVEX == 1:
         convexity = Convexity.DOWNWARD
+    elif oe.F_CONVEX == 1:
+        convexity = Convexity.UPWARD
 
     name = "Sphere Mirror (%s) " % kind
     mirror1 = S4SphereMirrorElement(

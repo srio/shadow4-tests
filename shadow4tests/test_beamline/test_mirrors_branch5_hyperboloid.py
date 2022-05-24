@@ -75,9 +75,9 @@ def run_hyperboloid(kind="hyperboloid"):
         cylinder_direction = Direction.SAGITTAL
 
     if oe.F_CONVEX == 0:
-        convexity = Convexity.UPWARD
-    elif oe.F_CONVEX == 1:
         convexity = Convexity.DOWNWARD
+    elif oe.F_CONVEX == 1:
+        convexity = Convexity.UPWARD
 
     name = "Hyperboloid Mirror (%s) " % kind
     mirror1 = S4HyperboloidMirrorElement(
