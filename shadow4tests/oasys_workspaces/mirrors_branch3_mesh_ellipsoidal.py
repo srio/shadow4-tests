@@ -14,6 +14,7 @@ def define_source():
     # Define variables. See https://raw.githubusercontent.com/oasys-kit/shadow3/master/docs/source.nml
 
     oe0.FDISTR = 3
+    oe0.F_PHOT = 0
     oe0.HDIV1 = 0.0
     oe0.HDIV2 = 0.0
     oe0.IDO_VX = 0
@@ -22,11 +23,12 @@ def define_source():
     oe0.IDO_Y_S = 0
     oe0.IDO_Z_S = 0
     oe0.ISTAR1 = 5676561
-    oe0.NPOINT = 100000
-    oe0.PH1 = 1.0
-    oe0.SIGDIX = 0.0001
-    oe0.SIGMAX = 0.0
-    oe0.SIGMAZ = 0.0
+    oe0.NPOINT = 15000
+    oe0.PH1 = 1000.0
+    oe0.SIGDIX = 4e-06
+    oe0.SIGDIZ = 4e-06
+    oe0.SIGMAX = 1e-06
+    oe0.SIGMAZ = 1e-06
     oe0.VDIV1 = 0.0
     oe0.VDIV2 = 0.0
 
@@ -63,7 +65,7 @@ def define_beamline():
 
     oe1.DUMMY = 100.0
     oe1.FHIT_C = 1
-    oe1.FILE_RIP = b'/nobackup/gurb1/srio/Oasys/mirrors_branch3_mesh_shadow.dat'
+    oe1.FILE_RIP = b'../oasys_workspaces/mirrors_branch3_mesh_shadow.dat'
     oe1.FMIRR = 2
     oe1.FWRITE = 1
     oe1.F_G_S = 2

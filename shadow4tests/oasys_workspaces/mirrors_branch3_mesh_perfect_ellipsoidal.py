@@ -14,6 +14,7 @@ def define_source():
     # Define variables. See https://raw.githubusercontent.com/oasys-kit/shadow3/master/docs/source.nml
 
     oe0.FDISTR = 3
+    oe0.F_PHOT = 0
     oe0.HDIV1 = 0.0
     oe0.HDIV2 = 0.0
     oe0.IDO_VX = 0
@@ -22,11 +23,12 @@ def define_source():
     oe0.IDO_Y_S = 0
     oe0.IDO_Z_S = 0
     oe0.ISTAR1 = 5676561
-    oe0.NPOINT = 10000
-    oe0.PH1 = 1.0
-    oe0.SIGDIX = 0.0001
-    oe0.SIGMAX = 0.0
-    oe0.SIGMAZ = 0.0
+    oe0.NPOINT = 15000
+    oe0.PH1 = 1000.0
+    oe0.SIGDIX = 4e-06
+    oe0.SIGDIZ = 4e-06
+    oe0.SIGMAX = 1e-06
+    oe0.SIGMAZ = 1e-06
     oe0.VDIV1 = 0.0
     oe0.VDIV2 = 0.0
 
@@ -63,17 +65,18 @@ def define_beamline():
 
     oe1.DUMMY = 100.0
     oe1.FHIT_C = 1
-    oe1.FILE_RIP = b'./../oasys_workspaces/mirrors_branch3_mesh_shadow.dat'
+    oe1.FILE_RIP = b'../oasys_workspaces/mirror111.dat'
     oe1.FWRITE = 1
     oe1.F_G_S = 2
     oe1.F_RIPPLE = 1
-    oe1.RLEN1 = 0.6
-    oe1.RLEN2 = 0.6
-    oe1.RWIDX1 = 0.05
-    oe1.RWIDX2 = 0.05
-    oe1.T_IMAGE = 100.0
-    oe1.T_INCIDENCE = 88.8
-    oe1.T_REFLECTION = 88.8
+    oe1.RLEN1 = 0.2
+    oe1.RLEN2 = 0.2
+    oe1.RWIDX1 = 0.001
+    oe1.RWIDX2 = 0.001
+    oe1.T_IMAGE = 10.0
+    oe1.T_INCIDENCE = 89.8281126615
+    oe1.T_REFLECTION = 89.8281126615
+    oe1.T_SOURCE = 40.0
 
 
 

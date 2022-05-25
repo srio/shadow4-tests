@@ -94,7 +94,7 @@ if __name__ == "__main__":
         convexity = Convexity.UPWARD
 
     name = "Ellipsoidal Mirror  "
-    mirror_base = optical_element=S4EllipsoidMirror(
+    mirror_base = S4EllipsoidMirror(
                 name=name,
                 boundary_shape=None,
                 surface_calculation=SurfaceCalculation.INTERNAL,
@@ -113,7 +113,15 @@ if __name__ == "__main__":
                 # refraction_index=1.0  # refraction index (complex) for f_refl=1
                 )
 
-    print(mirror_base.info())
+    element_base = S4EllipsoidMirrorElement(optical_element=mirror_base, coordinates=
+                            ElementCoordinates(
+                                p=oe.T_SOURCE,
+                                q=oe.T_IMAGE,
+                                angle_radial=numpy.radians(oe.T_INCIDENCE),
+                            ),
+                                            )
+
+    print(element_base.info())
 
 
     #
@@ -124,6 +132,7 @@ if __name__ == "__main__":
     mirror1 = S4AdditiveSurfaceDataMirrorElement(optical_element=S4AdditiveSurfaceDataMirror(
                                             name=name,
                                             surface_data_file="../oasys_workspaces/mirrors_branch3_mesh.hdf5",
+                                            # surface_data_file="/users/srio/Oasys/mirrors_branch3_mesh.hdf5",
                                             boundary_shape=Rectangle(
                                                         x_left=-oe.RWIDX2,
                                                         x_right=oe.RWIDX1,
@@ -139,7 +148,7 @@ if __name__ == "__main__":
                                             ),
                                         )
 
-
+    # mirror1 = element_base
 
     print(mirror1.info())
 
@@ -156,8 +165,8 @@ if __name__ == "__main__":
     #
     beam3 = run_beamline(beam3_source, define_beamline())
 
-    plotxy(beam3, 1, 3, nbins=201, nolost=1, title="%s shadow3" % name)
-    plotxy(beam4, 1, 3, nbins=201, nolost=1, title="%s shadow4" % name)
+    plotxy(beam3, 1, 3, nbins=201, nolost=1, xrange=[-1e-6,1e-6], yrange=[-10e-6,20e-6], title="%s shadow3" % name)
+    plotxy(beam4, 1, 3, nbins=201, nolost=1, xrange=[-1e-6,1e-6], yrange=[-10e-6,20e-6], title="%s shadow4" % name)
 
     from shadow4tests.compatibility.compare_beams import check_six_columns_mean_and_std, check_almost_equal
 
