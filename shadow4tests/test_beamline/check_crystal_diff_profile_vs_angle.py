@@ -108,7 +108,7 @@ if __name__ == "__main__":
     #                                angle_radial=0.0, angle_azimuthal=0.0, angle_radial_out=None))
 
     print(crystal1.info())
-    print(crystal1.get_optical_element().get_surface_shape().get_conic_coefficients())
+    # print(crystal1.get_optical_element().get_surface_shape().get_conic_coefficients())
 
 
     #
