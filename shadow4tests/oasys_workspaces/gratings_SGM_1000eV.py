@@ -24,7 +24,7 @@ def define_source():
     oe0.IDO_X_S = 0
     oe0.IDO_Y_S = 0
     oe0.IDO_Z_S = 0
-    oe0.NPOINT = 10000
+    oe0.NPOINT = 150000
     oe0.PH1 = 999.8
     oe0.PH2 = 1000.2
     oe0.SIGDIX = 2.12494e-05

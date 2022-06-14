@@ -87,7 +87,7 @@ if __name__ == "__main__":
     g = S4SphereGrating(
         name = name,
         boundary_shape = None, # BoundaryShape(),
-        ruling = oe.F_RULING,
+        ruling = oe.RULING,
         ruling_coeff_linear = 0,
         ruling_coeff_quadratic = 0,
         ruling_coeff_cubic = 0,
