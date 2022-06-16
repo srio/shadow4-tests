@@ -54,14 +54,17 @@ def check_six_columns_mean_and_std(beam3, beam4, do_plot=True, do_assert=False, 
             assert(numpy.abs(m0-m1) < assert_value)
             assert(numpy.abs(std0-std1) < assert_value)
 
-def check_almost_equal(beam3, beam4, do_assert=True, display_ray_number=10, level=1):
+def check_almost_equal(beam3, beam4, do_assert=True, display_ray_number=10, level=1, skip_columns=[]):
 
     print("\ncol#   shadow3  shadow4")
     for i in range(18):
 
-        print("col%d   %20.10f  %20.10f  " % (i + 1, beam3.rays[display_ray_number, i], beam4.rays[display_ray_number, i]))
-        if do_assert:
-            if i in [13,14]: # angles
-                assert_almost_equal( numpy.mod(beam3.rays[:, i], numpy.pi), numpy.mod(beam4.rays[:, i], numpy.pi), level)
-            else:
-                assert_almost_equal (beam3.rays[:,i], beam4.rays[:,i], level)
+        if (i+1) in skip_columns:
+            pass
+        else:
+            print("col%d   %20.10f  %20.10f  " % (i + 1, beam3.rays[display_ray_number, i], beam4.rays[display_ray_number, i]))
+            if do_assert:
+                if i in [13,14]: # angles
+                    assert_almost_equal( numpy.mod(beam3.rays[:, i], numpy.pi), numpy.mod(beam4.rays[:, i], numpy.pi), level)
+                else:
+                    assert_almost_equal (beam3.rays[:,i], beam4.rays[:,i], level)

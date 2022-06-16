@@ -104,7 +104,7 @@ if __name__ == "__main__":
         surface_calculation=SurfaceCalculation.EXTERNAL,
         is_cylinder=False,
         cylinder_direction=Direction.TANGENTIAL,
-        convexity=Convexity.UPWARD,
+        convexity=Convexity.DOWNWARD,
         radius=oe.RMIRR,
         p_focus=0.0,
         q_focus=0.0,
@@ -136,7 +136,9 @@ if __name__ == "__main__":
     plotxy(beam3, 1, 3, nbins=101, nolost=1, title="%s shadow3" % name)
     plotxy(beam4, 1, 3, nbins=101, nolost=1, title="%s shadow4" % name)
 
-    # from shadow4tests.compatibility.compare_beams import check_six_columns_mean_and_std, check_almost_equal
-    #
-    # check_six_columns_mean_and_std(beam3, beam4, do_assert=True, do_plot=False, assert_value=1e-6)
-    # check_almost_equal(beam3, beam4, do_assert=True, level=3)
+    from shadow4tests.compatibility.compare_beams import check_six_columns_mean_and_std, check_almost_equal
+
+    check_six_columns_mean_and_std(beam3, beam4, do_assert=True, do_plot=False, assert_value=1e-6)
+    check_almost_equal(beam3, beam4, do_assert=True, level=3, skip_columns=[13])
+
+    print(g.get_optical_surface_instance().ccc)

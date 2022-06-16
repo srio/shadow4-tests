@@ -24,7 +24,7 @@ def define_source():
     oe0.IDO_X_S = 0
     oe0.IDO_Y_S = 0
     oe0.IDO_Z_S = 0
-    oe0.NPOINT = 150000
+    oe0.NPOINT = 250000
     oe0.PH1 = 999.8
     oe0.PH2 = 1000.2
     oe0.SIGDIX = 2.12494e-05
@@ -69,7 +69,7 @@ def define_beamline():
     oe1.FMIRR = 1
     oe1.F_EXT = 1
     oe1.F_GRATING = 1
-    oe1.ORDER = 1.0
+    oe1.ORDER = 1
     oe1.RMIRR = 635.757
     oe1.RULING = 800000.0
     oe1.T_IMAGE = 9.93427
@@ -113,6 +113,6 @@ oe_list = define_beamline()
 
 beam = run_beamline(beam, oe_list, iwrite=1)
 
-Shadow.ShadowTools.plotxy(beam,1,3,nbins=101,nolost=1,title="Real space")
+# Shadow.ShadowTools.plotxy(beam,1,3,nbins=101,nolost=1,title="Real space")
 # Shadow.ShadowTools.plotxy(beam,1,4,nbins=101,nolost=1,title="Phase space X")
 # Shadow.ShadowTools.plotxy(beam,3,6,nbins=101,nolost=1,title="Phase space Z")
