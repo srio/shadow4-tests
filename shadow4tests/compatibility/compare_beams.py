@@ -59,10 +59,11 @@ def check_almost_equal(beam3, beam4, do_assert=True, display_ray_number=10, leve
     print("\ncol#   shadow3  shadow4")
     for i in range(18):
 
+        txt = "col%d   %20.10f  %20.10f  " % (i + 1, beam3.rays[display_ray_number, i], beam4.rays[display_ray_number, i])
         if (i+1) in skip_columns:
-            pass
+            print(txt+"**column not asserted**")
         else:
-            print("col%d   %20.10f  %20.10f  " % (i + 1, beam3.rays[display_ray_number, i], beam4.rays[display_ray_number, i]))
+            print(txt)
             if do_assert:
                 if i in [13,14]: # angles
                     assert_almost_equal( numpy.mod(beam3.rays[:, i], numpy.pi), numpy.mod(beam4.rays[:, i], numpy.pi), level)
