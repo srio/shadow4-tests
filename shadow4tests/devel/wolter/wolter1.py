@@ -1,10 +1,10 @@
 import numpy
-from shadow4.devel.wolter.conic_penelope import ellipsoid, hyperboloid, paraboloid, rotate_and_shift_quartic, euler_rotation_matrix
+from shadow4tests.devel.wolter.conic_penelope import ellipsoid, hyperboloid, paraboloid, rotate_and_shift_quartic, euler_rotation_matrix
 
-from shadow4.devel.wolter.conics_from_factory_parameters import ellipsoid as fac_ellipsoid
-from shadow4.devel.wolter.conics_from_factory_parameters import paraboloid as fac_paraboloid
-from shadow4.devel.wolter.conics_from_factory_parameters import hyperboloid as fac_hyperboloid
-from shadow4.devel.wolter.conics_from_factory_parameters import ken_ellipsoid, ken_hyperboloid, ken_paraboloid
+from shadow4tests.devel.wolter.conics_from_factory_parameters import ellipsoid as fac_ellipsoid
+from shadow4tests.devel.wolter.conics_from_factory_parameters import paraboloid as fac_paraboloid
+from shadow4tests.devel.wolter.conics_from_factory_parameters import hyperboloid as fac_hyperboloid
+from shadow4tests.devel.wolter.conics_from_factory_parameters import ken_ellipsoid, ken_hyperboloid, ken_paraboloid
 
 def cyl(ccc):
     ccc1 = ccc.copy()
