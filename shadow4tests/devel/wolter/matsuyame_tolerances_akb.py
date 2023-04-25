@@ -4,6 +4,19 @@
 import Shadow
 import numpy
 
+import numpy as np
+def rotate_and_translate_coefficients(coe_list,R_M,T):
+    axx, ayy, azz, axy, ayz, axz, ax, ay, az, a0 = coe_list
+    A2 = np.array([[axx,axy/2,axz/2],
+    [axy/2,ayy,ayz/2],
+    [axz/2,ayz/2,azz]])
+    A1 = np.array([ax,ay,az])
+    A0 = a0
+    B2 = np.dot(R_M, np.dot(A2,R_M.T)) # first equation 6.29
+    B1 = np.dot(R_M, A1) - 2 * np.dot(B2,T) # 2nd equation 6.29
+    B0 = A0 + np.dot(T.T, (np.dot(B2, T) - \
+    np.dot(R_M, A1))) # 3rd equation 6.29
+    return [ B2[0,0], B2[1,1], B2[2,2], B2[0,1] + B2[1,0], B2[1,2] + B2[2,1], B2[0,2] + B2[2,0], B1[0], B1[1], B1[2], B0]
 
 def define_source():
     #
@@ -49,7 +62,9 @@ def run_source(oe0, iwrite=False):
     return beam
 
 
-def define_beamline(X_ROT=0.0):
+def define_beamline(X_ROT=0.0, X_ROT2=0.0,
+                    ccc=[0.0, -46.20118343205854, -1847960.8414621525, 0.0, -27444.927571197237, 0.0, 0.0, 1.1510792319313623e-11,
+         2985.178365734318, 0.0]):
 
     # initialize elements
     oe_list = []
@@ -132,10 +147,10 @@ def define_beamline(X_ROT=0.0):
     oe4.T_REFLECTION = 89.71352110243458
     oe4.T_SOURCE = 0.05
 
+
     oe5.ALPHA = 90.0
-    oe5.CCC = numpy.array(
-        [0.0, -46.20118343205854, -1847960.8414621525, 0.0, -27444.927571197237, 0.0, 0.0, 1.1510792319313623e-11,
-         2985.178365734318, 0.0])
+    oe5.CCC = numpy.array(ccc
+        )
     oe5.DUMMY = 100.0
     oe5.FHIT_C = 1
     oe5.FMIRR = 10
@@ -149,6 +164,9 @@ def define_beamline(X_ROT=0.0):
     oe5.T_INCIDENCE = 89.71352110243458
     oe5.T_REFLECTION = 89.71352110243458
     oe5.T_SOURCE = 0.025
+    oe5.F_EXT = 1
+    oe5.F_MOVE = 1
+    oe5.X_ROT = X_ROT2
 
     oe6.ALPHA = 270.0
     oe6.DUMMY = 100.0
@@ -261,6 +279,8 @@ if __name__ == "__main__":
     from srxraylib.plot.gol import set_qt
     set_qt()
 
+    method = 1 # 0=shadow, 1=rotation of coefficients
+
     oe0 = define_source()
 
     beam0 = run_source(oe0, iwrite=0)
@@ -274,11 +294,31 @@ if __name__ == "__main__":
 
     fwhm = numpy.zeros_like(tol_a_deg)
 
+    ccc0 = [0.0, -46.20118343205854, -1847960.8414621525, 0.0, -27444.927571197237, 0.0, 0.0, 1.1510792319313623e-11,
+     2985.178365734318, 0.0]
 
     for i in range(tol_a_n):
         beam = beam0.duplicate()
 
-        oe_list = define_beamline(X_ROT=tol_a_deg[i])
+
+
+        if method == 0:
+            oe_list = define_beamline(X_ROT2=tol_a_deg[i])
+        else:
+            ######################################
+            Theta = tol_a[i]
+            R_M = numpy.array([[1, 0, 0],
+                            [0, numpy.cos(Theta), -numpy.sin(Theta)],
+                            [0, numpy.sin(Theta),  numpy.cos(Theta)]])
+            # translation vector
+            T = np.array([0, 0, 0])
+
+            ccc1 = rotate_and_translate_coefficients(ccc0.copy(),R_M,T)
+            #####################################
+            oe_list = define_beamline(ccc=ccc1) # X_ROT2=tol_a_deg[i])
+
+
+
 
         beam = run_beamline(beam, oe_list, iwrite=0) #tol_a[i])
 
@@ -297,7 +337,7 @@ if __name__ == "__main__":
     # Shadow.ShadowTools.plotxy(beam,3,6,nbins=101,nolost=1,title="Phase space Z")
     from srxraylib.plot.gol import plot
     plot(1e6*tol_a, 1e9*fwhm, xtitle="X_ROT [urad]", ytitle="FWHM [nm]")
-    filename = "matsuyama_tolerances_rot_m1.dat"
+    filename = "matsuyama_tolerances_akb3.dat"
     f = open(filename,'w')
     for i in range(tol_a_n):
         print(i, 1e6*tol_a[i], 1e9 * fwhm[i])
