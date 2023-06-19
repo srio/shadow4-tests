@@ -1,16 +1,16 @@
-from github import Github
+# https://stackoverflow.com/questions/63427607/python-upload-files-directly-to-github-using-pygithub
 
-ACCESS_TOKEN = ""
-GITHUB_REPO = "data_store"
-GIT_BRANCH = "main"
-INTERNAL_FILE = "local/data/folder/file1.csv"
-FOLDER_EMPL_IN_GIT = "serialized/file.txt"
+
+from github import Github
 
 
 def add_or_update_in_git(access_tocken, github_repo, git_branch, initial_file, folder_empl_in_git):
+
     g = Github(access_tocken)
 
-    repo = g.get_user().get_repo(github_repo)
+    # repo = g.get_user().get_repo(github_repo)
+    repo = g.get_repo(github_repo)
+    print(repo)
 
     all_files = []
     contents = repo.get_contents("")
@@ -36,4 +36,16 @@ def add_or_update_in_git(access_tocken, github_repo, git_branch, initial_file, f
         return folder_empl_in_git + ' CREATED'
 
 
-add_or_update_in_git(ACCESS_TOKEN, GITHUB_REPO, GIT_BRANCH, INTERNAL_FILE, FOLDER_EMPL_IN_GIT)
+if __name__ == "__main__":
+    ACCESS_TOKEN = input("github personal access token:")
+    GIT_BRANCH = "master"
+
+    ACCESS_TOKEN = ""
+    GITHUB_REPO = "srio/shadow4tests"
+    FOLDER_EMPL_IN_GIT = "workspaces/untitled.ows"
+
+    INTERNAL_FILE = "/users/srio/Oasys/untitled.ows"
+
+
+    txt = add_or_update_in_git(ACCESS_TOKEN, GITHUB_REPO, GIT_BRANCH, INTERNAL_FILE, FOLDER_EMPL_IN_GIT)
+    print(txt)
