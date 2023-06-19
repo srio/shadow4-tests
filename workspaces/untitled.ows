@@ -1,19 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
 <scheme version="2.0" title="" description="" working_directory="/users/srio/Oasys" workspace_units="1">
 	<nodes>
-		<node id="0" name="Remote Github Repository Downloader" qualified_name="oasys.widgets.tools.ow_remote_github_downloader.OWRemoteGithubDownloader" project_name="OASYS1" version="" title="Remote Github Repository Downloader" position="(150.0, 149.0)" />
+		<node id="0" name="Remote Github Repository Downloader" qualified_name="oasys.widgets.tools.ow_remote_github_downloader.OWRemoteGithubDownloader" project_name="OASYS1" version="" title="Remote Github Repository Downloader" position="(149.0, 148.0)" />
 	</nodes>
 	<links />
 	<annotations />
 	<thumbnail />
 	<node_properties>
-		<properties node_id="0" format="pickle">gASVZQEAAAAAAAB9lCiMDmJlYW1fZmlsZV9uYW1llIwAlIwKcmVwb3NpdG9yeZSMJWh0dHBzOi8v
-Z2l0aHViLmNvbS9zcmlvL3NoYWRvdzQtdGVzdHOUjBNzYXZlZFdpZGdldEdlb21ldHJ5lIwDc2lw
-lIwOX3VucGlja2xlX3R5cGWUk5SMDFB5UXQ1LlF0Q29yZZSMClFCeXRlQXJyYXmUQ0IB2dDLAAMA
-AAAAA40AAAAoAAAGFgAAAdwAAAONAAAATQAABhYAAAHcAAAAAAAAAAAGkAAAA40AAABNAAAGFgAA
-AdyUhZSHlFKUjAxzZWxlY3RlZEZpbGWUaAKMDXNlbGVjdGVkSW5kZXiUjAdjb3B5cmVnlIwOX3Jl
-Y29uc3RydWN0b3KUk5SMCGJ1aWx0aW5zlIwEbGlzdJSTlGgWKYeUUpRLAGGMDHNlcnZlcnNfbGlz
-dJRLCowPdXJsc2VsZWN0ZWRmaWxllGgCdS4=
+		<properties node_id="0" format="pickle">gASV2wEAAAAAAAB9lCiMDmJlYW1fZmlsZV9uYW1llIwAlIwKcmVwb3NpdG9yeZSMO2h0dHBzOi8v
+Z2l0aHViLmNvbS9zcmlvL3NoYWRvdzR0ZXN0cy90cmVlL21hc3Rlci93b3Jrc3BhY2VzlIwTc2F2
+ZWRXaWRnZXRHZW9tZXRyeZSMA3NpcJSMDl91bnBpY2tsZV90eXBllJOUjAxQeVF0NS5RdENvcmWU
+jApRQnl0ZUFycmF5lENCAdnQywADAAAAAAONAAAAKAAABhYAAAHcAAADjQAAAE0AAAYWAAAB3AAA
+AAAAAAAABpAAAAONAAAATQAABhYAAAHclIWUh5RSlIwMc2VsZWN0ZWRGaWxllIwMdW50aXRsZWQu
+b3dzlIwNc2VsZWN0ZWRJbmRleJSMB2NvcHlyZWeUjA5fcmVjb25zdHJ1Y3RvcpSTlIwIYnVpbHRp
+bnOUjARsaXN0lJOUaBcph5RSlEsAYYwMc2VydmVyc19saXN0lEsKjA91cmxzZWxlY3RlZGZpbGWU
+jFJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vc3Jpby9zaGFkb3c0dGVzdHMvbWFz
+dGVyL3dvcmtzcGFjZXMvdW50aXRsZWQub3dzlHUu
 </properties>
 	</node_properties>
 </scheme>
