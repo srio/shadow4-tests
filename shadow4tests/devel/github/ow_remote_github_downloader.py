@@ -16,8 +16,16 @@ from github import Github
 import os
 
 
+SHADOW4_REPO = "https://github.com/oasys-kit/shadow4workspaces/tree/main"
+
+
 def add_or_update_in_git(access_tocken, github_repo, git_branch, initial_file, folder_empl_in_git):
 
+    print(">>>> github_repo: ", github_repo)
+    print(">>>> git_branch: ", git_branch)
+    print(">>>> initial_file: ", initial_file)
+    print(">>>> folder_empl_in_git: ", folder_empl_in_git)
+    print(">>>> access_tocken: ", access_tocken)
     g = Github(access_tocken)
 
     # repo = g.get_user().get_repo(github_repo)
@@ -50,7 +58,7 @@ def add_or_update_in_git(access_tocken, github_repo, git_branch, initial_file, f
 def get_usual_servers():
     urls = [
         "",
-        "https://github.com/srio/shadow4tests/tree/master/workspaces",
+        SHADOW4_REPO,
         "https://github.com/oasys-kit/ShadowOui-tutorial",
         # "https://github.com/oasys-kit/ShadowOui-Tutorial/tree/master/OTHER_EXAMPLES",
         # "https://github.com/oasys-kit/ShadowOui-Tutorial/tree/master/SOS-WORKSHOP/EBS-WIGGLERS",
@@ -67,7 +75,7 @@ def get_usual_servers():
     ]
     names = [
         "",
-        "shadow4tests",
+        "shadow4workspaces",
         "ShadowOui-tutorial",
         # "ShadowOui-tutorial more",
         # "ShadowOui-tutorial ESRF wigglers",
@@ -84,7 +92,7 @@ def get_usual_servers():
     ]
     return names, urls
 
-def ls_ows(target_url = "https://github.com/PaNOSC-ViNYL/Oasys-PaNOSC-Workspaces"):
+def ls_ows(target_url = ""):
     data = urllib.request.urlopen(target_url)
     list_files = []
     for line in data:
@@ -155,7 +163,7 @@ class OWRemoteGithubDownloader(oasyswidget.OWWidget):
     selectedIndex = Setting([0])
     selectedFile = Setting("")
     servers_list = Setting(1)
-    repository = Setting("https://github.com/srio/shadow4tests/tree/master/workspaces")
+    repository = Setting(SHADOW4_REPO)
     urlselectedfile = Setting("")
     local_file_to_upload = Setting("")
     destination_path = Setting("")
@@ -204,11 +212,8 @@ class OWRemoteGithubDownloader(oasyswidget.OWWidget):
         box2 = gui.widgetBox(main_box, orientation="horizontal")
         upper_box = oasysgui.widgetBox(box2, "", orientation="horizontal", width=wWidth-50, height=wHeight-40)
 
-        # left_box = oasysgui.widgetBox(upper_box, "List of workspaces", orientation="vertical",
-        #                                 width=wWidth//2-13) #, height=wHeight-143)
-
         left_box = oasysgui.widgetBox(upper_box, "List of workspaces", orientation="vertical",
-                                        width=wWidth//2-13, height=wHeight-343)
+                                        width=wWidth//2-13, height=wHeight-400)
 
         self.beamlineList = gui.listBox(left_box, self, "selectedIndex", callback=self.select_beamline)
 
@@ -234,18 +239,15 @@ class OWRemoteGithubDownloader(oasyswidget.OWWidget):
 
         box4 = gui.widgetBox(main_box, "Uploading options", orientation="vertical")
         box43 = gui.widgetBox(box4, orientation="horizontal")
-        # oasysgui.lineEdit(box43, self, "local_file_to_upload", "Selected local file to upload: ", labelWidth=120,
-        #                                      valueType=str, orientation="horizontal",
-        #                                      )
 
-        self.le_file_name = oasysgui.lineEdit(box43, self, "local_file_to_upload", "Local File to Upload",
-                                                    labelWidth=120, valueType=str, orientation="horizontal")
+        self.le_file_name = oasysgui.lineEdit(box43, self, "local_file_to_upload", "from (local file):",
+                                                    labelWidth=150, valueType=str, orientation="horizontal")
         self.le_file_name.setFixedWidth(330)
         gui.button(box43, self, "...", callback=self.selectFile)
 
         box44 = gui.widgetBox(box4, orientation="horizontal")
-        oasysgui.lineEdit(box44, self, "destination_path", "destination https://github.com/srio/shadow4tests/: ", labelWidth=335,
-                                             valueType=str, orientation="horizontal",
+        oasysgui.lineEdit(box44, self, "destination_path", "to: %s: " % self.repository,
+                          labelWidth=400, valueType=str, orientation="horizontal",
                                              )
 
         box45 = gui.widgetBox(box4, orientation="horizontal")
@@ -266,16 +268,16 @@ class OWRemoteGithubDownloader(oasyswidget.OWWidget):
         file_selected = oasysgui.selectFileFromDialog(self, self.local_file_to_upload, "Open local ows file")
         self.le_file_name.setText(file_selected)
         path = os.path.normpath(file_selected)
-        self.destination_path = "workspaces" + os.sep + path.split(os.sep)[-1]
+        self.destination_path = path.split(os.sep)[-1]
 
     def upload(self):
 
-        GIT_BRANCH = "master"
-        GITHUB_REPO = "srio/shadow4tests"
+        GIT_BRANCH = "main"
+        # GITHUB_REPO = SHADOW4_REPO # "srio/shadow4tests"
 
         try:
             txt = add_or_update_in_git(self.github_token,
-                                       GITHUB_REPO,
+                                       self.repository,
                                        GIT_BRANCH,
                                        self.local_file_to_upload,
                                        self.destination_path)
@@ -317,7 +319,6 @@ class OWRemoteGithubDownloader(oasyswidget.OWWidget):
             self.metadataLabel   = ""
             self.selectedFile    = ""
             self.urlselectedfile = ""
-
 
 
     def download_scheme(self):

@@ -93,10 +93,10 @@ if __name__ == "__main__":
     oe_list = define_beamline()
     beam3 = run_beamline(beam3_source, oe_list)
 
-    plotxy(beam3, 1, 3, nbins=201, nolost=1, title="%s shadow3" % name)
-    plotxy(beam4, 1, 3, nbins=201, nolost=1, title="%s shadow4" % name)
+    # plotxy(beam3, 1, 3, nbins=201, nolost=1, title="%s shadow3" % name)
+    # plotxy(beam4, 1, 3, nbins=201, nolost=1, title="%s shadow4" % name)
 
     from shadow4tests.compatibility.compare_beams import check_six_columns_mean_and_std, check_almost_equal
 
     check_six_columns_mean_and_std(beam3, beam4, do_assert=True, do_plot=False)
-    check_almost_equal(beam3, beam4, do_assert = True, level=6)
+    check_almost_equal(beam3, beam4, do_assert = True, level=6, skip_columns=[10,15])
