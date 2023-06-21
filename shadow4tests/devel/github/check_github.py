@@ -37,7 +37,7 @@ def add_or_update_in_git(access_tocken, github_repo, git_branch, initial_file, f
 
 
 if __name__ == "__main__":
-    ACCESS_TOKEN = "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" # input("github personal access token:")
+    ACCESS_TOKEN = input("github personal access token:")
     GIT_BRANCH = "master"
 
     ACCESS_TOKEN = ""
