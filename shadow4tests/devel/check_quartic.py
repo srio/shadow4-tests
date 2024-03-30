@@ -63,6 +63,60 @@ def mquartic(a, b, c, d):
 
     return sol1, sol2, sol3, sol4
 
+def newton(f,Df,x0,epsilon,max_iter):
+    '''Approximate solution of f(x)=0 by Newton's method.
+
+    Parameters
+    ----------
+    f : function
+        Function for which we are searching for a solution f(x)=0.
+    Df : function
+        Derivative of f(x).
+    x0 : number
+        Initial guess for a solution f(x)=0.
+    epsilon : number
+        Stopping criteria is abs(f(x)) < epsilon.
+    max_iter : integer
+        Maximum number of iterations of Newton's method.
+
+    Returns
+    -------
+    xn : number
+        Implement Newton's method: compute the linear approximation
+        of f(x) at xn and find x intercept by the formula
+            x = xn - f(xn)/Df(xn)
+        Continue until abs(f(xn)) < epsilon and return xn.
+        If Df(xn) == 0, return None. If the number of iterations
+        exceeds max_iter, then return None.
+
+    Examples
+    --------
+    >>> f = lambda x: x**2 - x - 1
+    >>> Df = lambda x: 2*x - 1
+    >>> newton(f,Df,1,1e-8,10)
+    Found solution after 5 iterations.
+    1.618033988749989
+    '''
+    xn = x0
+    for n in range(0,max_iter):
+        fxn = f(xn)
+        if numpy.abs(fxn) < epsilon:
+            print('Found solution after',n,'iterations.')
+            return xn
+        Dfxn = Df(xn)
+        if Dfxn == 0:
+            print('Zero derivative. No solution found.')
+            return None
+        xn = xn - fxn/Dfxn
+    print('Exceeded maximum iterations. No solution found.')
+    return None
+
+def pol4(z0, ABCDE=None):
+    return ABCDE[0] * z0 ** 4 + ABCDE[1] * z0 ** 3 + ABCDE[2] * z0 ** 2 + ABCDE[3] * z0 + ABCDE[4]
+
+def dpol4(z0, ABCDE=None):
+    return 4 * ABCDE[0] * z0 ** 3 + 3 * ABCDE[1] * z0 ** 2 + 2 * ABCDE[2] * z0  + ABCDE[3]
+
 if __name__ == "__main__":
 
     DCBA1 = [-8745.02188873291, -624.6460852022283, 149.91291022442874, -10.002177259318255, 1.0]
@@ -100,13 +154,20 @@ if __name__ == "__main__":
         ABCDE = [ 1, -10.002177259318255, 149.91291022442874, -624.6460852022283, -8745.02188873291]
         roots = quartic_roots(ABCDE, modified=1, zero_below=1e-6)
         print("roots: ", roots)
-        z0 = roots[0][0] ; print("modified: 0 =? ", ABCDE[0] * z0 ** 4 + ABCDE[1] * z0 ** 3 + ABCDE[2] * z0 ** 2 + ABCDE[3] * z0 + ABCDE[4])
-        z1 = roots[0][1] ; print("modified: 0 =? ", ABCDE[0] * z1 ** 4 + ABCDE[1] * z1 ** 3 + ABCDE[2] * z1 ** 2 + ABCDE[3] * z1 + ABCDE[4])
-        z2 = roots[0][2] ; print("modified: 0 =? ", ABCDE[0] * z2 ** 4 + ABCDE[1] * z2 ** 3 + ABCDE[2] * z2 ** 2 + ABCDE[3] * z2 + ABCDE[4])
-        z3 = roots[0][3] ; print("modified: 0 =? ", ABCDE[0] * z3 ** 4 + ABCDE[1] * z3 ** 3 + ABCDE[2] * z3 ** 2 + ABCDE[3] * z3 + ABCDE[4])
+        # z0 = roots[0][0] ; print("modified: 0 =? ", ABCDE[0] * z0 ** 4 + ABCDE[1] * z0 ** 3 + ABCDE[2] * z0 ** 2 + ABCDE[3] * z0 + ABCDE[4])
+        # z1 = roots[0][1] ; print("modified: 0 =? ", ABCDE[0] * z1 ** 4 + ABCDE[1] * z1 ** 3 + ABCDE[2] * z1 ** 2 + ABCDE[3] * z1 + ABCDE[4])
+        # z2 = roots[0][2] ; print("modified: 0 =? ", ABCDE[0] * z2 ** 4 + ABCDE[1] * z2 ** 3 + ABCDE[2] * z2 ** 2 + ABCDE[3] * z2 + ABCDE[4])
+        # z3 = roots[0][3] ; print("modified: 0 =? ", ABCDE[0] * z3 ** 4 + ABCDE[1] * z3 ** 3 + ABCDE[2] * z3 ** 2 + ABCDE[3] * z3 + ABCDE[4])
+
+        z0 = roots[0][0] ; print("modified: 0 =? ", pol4(z0, ABCDE=ABCDE))
+        z1 = roots[0][1] ; print("modified: 0 =? ", pol4(z0, ABCDE=ABCDE))
+        z2 = roots[0][2] ; print("modified: 0 =? ", pol4(z0, ABCDE=ABCDE))
+        z3 = roots[0][3] ; print("modified: 0 =? ", pol4(z0, ABCDE=ABCDE))
 
 
-        #
+
+
+    #
         # # DCBA1 =   [-8745.02188873291, -624.6460852022283, 149.91291022442874, -10.002177259318255, 1.0]
         # >>> roots
             # array([[-30.76994812-0.j,  -7.60101564+0.j,   6.61999319+0.j,
@@ -128,3 +189,20 @@ if __name__ == "__main__":
 
         # print(mquartic(ABCDE[1], ABCDE[2], ABCDE[3], ABCDE[4]))
         # print(mquartic(7, -806, -1050, 38322))
+
+    if True:
+        # p = lambda x: x ** 3 - x ** 2 - 1
+        # Dp = lambda x: 3 * x ** 2 - 2 * x
+        # approx = newton(p, Dp, 1, 1e-10, 10)
+        # print(approx)
+
+        p = lambda x: pol4(x, ABCDE=ABCDE)
+        Dp = lambda x: dpol4(x, ABCDE=ABCDE)
+
+        approx = newton(p, Dp, 10, 1e-10, 10)
+        print(approx)
+        z3 = roots[0][3] ; print("Newton: 0 =? ", pol4(approx, ABCDE=ABCDE))
+
+        approx = newton(p, Dp, -5, 1e-10, 10)
+        print(approx)
+        z3 = roots[0][3] ; print("Newton: 0 =? ", pol4(approx, ABCDE=ABCDE))
