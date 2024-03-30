@@ -1,6 +1,35 @@
 import numpy
 from srxraylib.profiles.diaboloid.fqs import single_quartic, single_quartic_modified, quartic_roots
 
+def vy(ABCDE):
+    a = ABCDE[0] #+ 0j
+    b = ABCDE[1] #+ 0j
+    c = ABCDE[2] #+ 0j
+    d = ABCDE[3] #+ 0j
+    e = ABCDE[4] + 0j
+    if a!=1: raise Exception("a must be one.")
+
+    D1 = 2 * c**3 - 9 * b * c * d + 27 * b**2 * e + 27 * d**2 - 72 * c * e
+    D0 = c**2 - 3 * b * d + 12 * e
+
+    print(">>>>>>>>>D1: ", D1,  D1**2 - 4 * D0**3 )
+
+    Q = numpy.power(2, 1.0/3) * numpy.power((D1 + numpy.sqrt(D1**2 - 4 * D0**3)), 1.0/3)
+    k = (8 * c - 3 * b**2) / 8
+    S = 0.5 * numpy.sqrt((1.0/3) * (Q + D0 / Q) - 2 * k / 3)
+
+    m = (b**3 - 4 * b * c + 8 * d) / 8
+
+    z1 = -b / 4 - S + 0.5 * numpy.sqrt(-4 * S**2 - 2 * k + m / S)
+    z2 = -b / 4 - S - 0.5 * numpy.sqrt(-4 * S**2 - 2 * k + m / S)
+    z3 = -b / 4 + S + 0.5 * numpy.sqrt(-4 * S**2 - 2 * k - m / S)
+    z4 = -b / 4 + S - 0.5 * numpy.sqrt(-4 * S**2 - 2 * k - m / S)
+
+    return z1, z2, z3, z4
+
+
+
+
 def mquartic(a, b, c, d):
     from numpy import sqrt as Sqrt
 
@@ -160,9 +189,9 @@ if __name__ == "__main__":
         # z3 = roots[0][3] ; print("modified: 0 =? ", ABCDE[0] * z3 ** 4 + ABCDE[1] * z3 ** 3 + ABCDE[2] * z3 ** 2 + ABCDE[3] * z3 + ABCDE[4])
 
         z0 = roots[0][0] ; print("modified: 0 =? ", pol4(z0, ABCDE=ABCDE))
-        z1 = roots[0][1] ; print("modified: 0 =? ", pol4(z0, ABCDE=ABCDE))
-        z2 = roots[0][2] ; print("modified: 0 =? ", pol4(z0, ABCDE=ABCDE))
-        z3 = roots[0][3] ; print("modified: 0 =? ", pol4(z0, ABCDE=ABCDE))
+        z1 = roots[0][1] ; print("modified: 0 =? ", pol4(z1, ABCDE=ABCDE))
+        z2 = roots[0][2] ; print("modified: 0 =? ", pol4(z2, ABCDE=ABCDE))
+        z3 = roots[0][3] ; print("modified: 0 =? ", pol4(z3, ABCDE=ABCDE))
 
 
 
@@ -206,3 +235,16 @@ if __name__ == "__main__":
         approx = newton(p, Dp, -5, 1e-10, 10)
         print(approx)
         z3 = roots[0][3] ; print("Newton: 0 =? ", pol4(approx, ABCDE=ABCDE))
+
+
+    if True:
+        ABCDE = [1, 7, -806, -1050, 38322]
+        # ABCDE = [ 1, -10.002177259318255, 149.91291022442874, -624.6460852022283, -8745.02188873291]
+        roots = vy(ABCDE)
+        print("roots: ", roots)
+
+        z0 = roots[0] ; print("vy modified: 0 =? ", pol4(z0, ABCDE=ABCDE))
+        z1 = roots[1] ; print("vy modified: 0 =? ", pol4(z1, ABCDE=ABCDE))
+        z2 = roots[2] ; print("vy modified: 0 =? ", pol4(z2, ABCDE=ABCDE))
+        z3 = roots[3] ; print("vy modified: 0 =? ", pol4(z3, ABCDE=ABCDE))
+
