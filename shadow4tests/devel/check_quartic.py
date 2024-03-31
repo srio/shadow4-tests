@@ -14,7 +14,7 @@ def vy(ABCDE):
 
     print(">>>>>>>>>D1: ", D1,  D1**2 - 4 * D0**3 )
 
-    Q = numpy.power(2, 1.0/3) * numpy.power((D1 + numpy.sqrt(D1**2 - 4 * D0**3)), 1.0/3)
+    Q = numpy.power(2, -1.0/3) * numpy.power((D1 + numpy.sqrt(D1**2 - 4 * D0**3)), 1.0/3)
     k = (8 * c - 3 * b**2) / 8
     S = 0.5 * numpy.sqrt((1.0/3) * (Q + D0 / Q) - 2 * k / 3)
 
