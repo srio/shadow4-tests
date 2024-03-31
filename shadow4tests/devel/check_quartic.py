@@ -11,14 +11,23 @@ def vy(ABCDE):
 
     D1 = 2 * c**3 - 9 * b * c * d + 27 * b**2 * e + 27 * d**2 - 72 * c * e
     D0 = c**2 - 3 * b * d + 12 * e
+    D = (D1**2 - 4 * D0**3) / (-27)
 
-    print(">>>>>>>>>D1: ", D1,  D1**2 - 4 * D0**3 )
+
+    k = (8 * c - 3 * b**2) / 8
+
 
     Q = numpy.power(2, -1.0/3) * numpy.power((D1 + numpy.sqrt(D1**2 - 4 * D0**3)), 1.0/3)
-    k = (8 * c - 3 * b**2) / 8
     S = 0.5 * numpy.sqrt((1.0/3) * (Q + D0 / Q) - 2 * k / 3)
+    if numpy.abs(S) < 1e-6:
+        print(">>>> changed sign of sqrt")
+        Q = numpy.power(2, -1.0/3) * numpy.power((D1 - numpy.sqrt(D1**2 - 4 * D0**3)), 1.0/3)
+        S = 0.5 * numpy.sqrt((1.0/3) * (Q + D0 / Q) - 2 * k / 3)
+
 
     m = (b**3 - 4 * b * c + 8 * d) / 8
+
+    print(">>>>>>>>>Q,S,D: ", Q,S,D)
 
     z1 = -b / 4 - S + 0.5 * numpy.sqrt(-4 * S**2 - 2 * k + m / S)
     z2 = -b / 4 - S - 0.5 * numpy.sqrt(-4 * S**2 - 2 * k + m / S)
@@ -238,8 +247,8 @@ if __name__ == "__main__":
 
 
     if True:
-        ABCDE = [1, 7, -806, -1050, 38322]
-        # ABCDE = [ 1, -10.002177259318255, 149.91291022442874, -624.6460852022283, -8745.02188873291]
+        # ABCDE = [1, 7, -806, -1050, 38322]
+        ABCDE = [ 1, -10.002177259318255, 149.91291022442874, -624.6460852022283, -8745.02188873291]
         roots = vy(ABCDE)
         print("roots: ", roots)
 
